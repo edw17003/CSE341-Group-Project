@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const OAuthUserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   googleId: {
     type: String,
     required: true,
@@ -20,10 +20,14 @@ const OAuthUserSchema = new mongoose.Schema({
   image: {
     type: String,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
+  roleId: {
+    type: Number,
+    default: 1
   },
+  biography: {
+    type: String,
+    default: ''
+  }
 });
 
-module.exports = mongoose.model('OAuthUser', OAuthUserSchema, 'oauth');
+module.exports = mongoose.model('User', UserSchema, 'users');
