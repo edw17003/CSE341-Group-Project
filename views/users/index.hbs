@@ -1,7 +1,7 @@
-<h1>Stories</h1>
+<h1>Users</h1>
 <ul class="search-form">
     <li>    
-        <form id="search-site"  action='/stories/search/:query' method='get'>
+        <form id="search-site"  action='/users/search/:query' method='get'>
             <div class="input-group">
                     <i class="fas fa-search fa-large" ></i>
                     <div class="input-field">
@@ -16,11 +16,11 @@
     </li>   
 </ul>
 <div class="row">
-    {{#each stories}}
+    {{#each users}}
     <div class="col s12 m4">
         <div class="card">
             <div class="card-image">
-                {{{editIcon user ../user _id}}}
+                {{{editIcon user ../user googleId}}}
             </div>
             <div class="card-content center-align">
                 <h5>{{title}}</h5>
@@ -28,15 +28,15 @@
                 <br>
                 <div class="chip">
                     <img src="{{user.image}}" alt="">
-                    <a href="/stories/user/{{user._id}}">{{user.displayName}}</a>
+                    <a href="/users/user/{{user.googleId}}">{{user.displayName}}</a>
                 </div>
             </div>
             <div class="card-action center-align">
-                <a href="/stories/{{_id}}" class="btn grey">Read More</a>
+                <a href="/users/{{googleId}}" class="btn grey">Read More</a>
             </div>
         </div>
     </div>
     {{else}}
-    <p>No stories to display</p>
+    <p>No users to display</p>
     {{/each}}
 </div>

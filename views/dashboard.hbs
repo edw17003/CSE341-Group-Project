@@ -1,4 +1,4 @@
-{{!-- <h4 style="padding-left: .5em;">Welcome {{name}}</h4> --}}
+<h4 style="padding-left: .5em;">Welcome, {{name}}</h4>
 {{#if allUsers}}
 <table class="striped">
     <thead>
@@ -15,10 +15,8 @@
     </thead>
     <tbody>
         {{#each allUsers}}
-            {{#if username}}
             <tr>
-                <td><a href="/stories/{{_id}}">{{_id}}</a></td>
-                <td>{{googleId}}</td>
+                <td><a href="/users/{{googleId}}">{{googleId}}</a></td>
                 <td>{{displayName}}</td>
                 <td>{{firstName}}</td>
                 <td>{{lastName}}</td>
@@ -28,15 +26,14 @@
                 <td><span class="dash-status">{{status}}</span></td>
 
                 <td>
-                    {{!-- <form action="/stories/{{_id}}" method="POST" id="delete-form"> --}}
-                        {{!-- <input type="hidden" name="_method" value="DELETE"> --}}
+                    <form action="/users/{{googleId}}" method="POST" id="delete-form">
+                        <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="btn red">
                             <i class="fas fa-trash"></i>
                         </button>
-                    {{!-- </form> --}}
+                    </form>
                 </td>
             </tr>
-            {{/if}}
         {{/each}}
     </tbody>
 </table>

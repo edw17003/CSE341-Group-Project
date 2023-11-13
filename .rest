@@ -4,8 +4,18 @@ GET http://localhost:8080/users/
 accept: application/json
 apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
 
+### Get by ID 
+GET http://localhost:8080/users/108697017691255307413 
+accept: application/json 
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
 ## PRODUCTION
 ### Get all users
 GET https://cse341-groupproject.onrender.com/users/
 accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+### Get by ID 
+GET https://cse341-groupproject.onrender.com/users/108697017691255307413 
+accept: application/json 
 apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N

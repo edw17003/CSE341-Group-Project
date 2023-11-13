@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col s12 m8">
         <h3>{{story.title}}
-            <small>{{{editIcon story.user user story._id false}}}</small>
+            <small>{{{editIcon story.user user story.googleId false}}}</small>
         </h3>
         <div class="card story">
             <div class="card-content">
@@ -17,7 +17,7 @@
                 <img src="{{story.user.image}}" class="circle responsive-img img-small">
             </div>
             <div class="card-action">
-                <a href="/stories/user/{{story.user._id}}">More From {{story.user.firstName}}</a>
+                <a href="/users/user/{{story.user.googleId}}">More From {{story.user.firstName}}</a>
             </div>
         </div>
     </div>
