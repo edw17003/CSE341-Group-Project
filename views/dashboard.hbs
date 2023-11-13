@@ -3,14 +3,13 @@
 <table class="striped">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Email</th>
+            <th>Google ID</th>
             <th>Display Name</th>
-            <th>Access Level</th>
-            <th>Birth Date</th>
-            <th>Phone Number</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Image</th>
+            <th>Role ID</th>
+            <th>Biography</th>
             <th></th>
         </tr>
     </thead>
@@ -19,13 +18,13 @@
             {{#if username}}
             <tr>
                 <td><a href="/stories/{{_id}}">{{_id}}</a></td>
-                <td>{{username}}</td>
-                <td>{{password}}</td>
-                <td>{{email}}</td>
+                <td>{{googleId}}</td>
                 <td>{{displayName}}</td>
-                <td>{{accessLevel}}</td>
-                <td>{{dateOfBirth}}</td>
-                <td>{{phoneNumber}}</td>
+                <td>{{firstName}}</td>
+                <td>{{lastName}}</td>
+                <td>{{image}}</td>
+                <td>{{roleId}}</td>
+                <td>{{biography}}</td>
                 <td><span class="dash-status">{{status}}</span></td>
 
                 <td>

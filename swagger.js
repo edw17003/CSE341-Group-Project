@@ -14,21 +14,70 @@ const doc = {
             description: 'local server',
         },
         {
-            url: 'https://cse341-personalproject-nnod.onrender.com/',
+            url: 'https://cse341-groupproject.onrender.com/',
             description: 'production server',
         },
     ],
     schemes,
-    tags: ['Users'],
+    tags: [
+        {
+            name: 'Users',
+            description: 'API for managing users',
+        },
+        {
+            name: 'Roles',
+            description: 'API for managing roles',
+        },
+        {
+            name: 'Books',
+            description: 'API for managing books',
+        },
+        {
+            name: 'Art',
+            description: 'API for managing art',
+        },
+    ],
     definitions: {
-        UserInput: {
+        User: {
             type: 'object',
             properties: {
-                username: { type: 'string' },
-                password: { type: 'string' },
-                email: { type: 'string' },
+                googleId: { type: 'string' },
                 displayName: { type: 'string' },
-                accessLevel: { type: 'integer' },
+                firstName: { type: 'string' },
+                lastName: { type: 'string' },
+                image: { type: 'string' },
+                roleId: { type: 'integer' },
+                biography: { type: 'string' }
+            },
+        },
+        Role: {
+            type: 'object',
+            properties: {
+                roleId: { type: 'integer' },
+                name: { type: 'string' }
+            },
+        },
+        Book: {
+            type: 'object',
+            properties: {
+                bookId: { type: 'integer' },
+                userId: { type: 'integer' },
+                title: { type: 'string' },
+                author: { type: 'string' },
+                genre: { type: 'string' },
+                image: { type: 'string' },
+            },
+        },
+        Art: {
+            type: 'object',
+            properties: {
+                artId: { type: 'integer' },
+                userId: { type: 'integer' },
+                title: { type: 'string' },
+                description: { type: 'string' },
+                publicationDate: { type: 'string' },
+                genre: { type: 'string' },
+                image: { type: 'string' },
             },
         },
     },
