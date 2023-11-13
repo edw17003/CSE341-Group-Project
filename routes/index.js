@@ -13,14 +13,13 @@ routes.get('/', ensureGuest, (req, res) => {
 
 routes.get('/dashboard', ensureAuth, async (req, res) => {
   try {
-    const apiUrl = 'http://localhost:8080/users/';
+    const apiUrl = 'https://cse341-groupproject.onrender.com/users/';
     const headers = {
       'Accept': 'application/json',
       'apiKey': 'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
     };
 
     const response = await axios.get(apiUrl, { headers });
-    console.log(response.data)
     const allUsers = response.data;
 
     res.render('dashboard', {
