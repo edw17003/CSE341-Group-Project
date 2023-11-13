@@ -38,46 +38,46 @@ const doc = {
         },
     ],
     definitions: {
-        User: {
+        users: {
             type: 'object',
             properties: {
-                googleId: { type: 'string' },
-                displayName: { type: 'string' },
-                firstName: { type: 'string' },
-                lastName: { type: 'string' },
-                image: { type: 'string' },
-                roleId: { type: 'integer' },
-                biography: { type: 'string' }
+                googleId: 'string',
+                displayName: 'string',
+                firstName: 'string',
+                lastName: 'string',
+                image: 'string',
+                roleId: 'integer',
+                biography: 'string'
             },
         },
-        Role: {
+        roles: {
             type: 'object',
             properties: {
-                roleId: { type: 'integer' },
-                name: { type: 'string' }
+                roleId: 'integer',
+                name: 'string'
             },
         },
-        Book: {
+        books: {
             type: 'object',
             properties: {
-                bookId: { type: 'integer' },
-                userId: { type: 'integer' },
-                title: { type: 'string' },
-                author: { type: 'string' },
-                genre: { type: 'string' },
-                image: { type: 'string' },
+                bookId: 'integer',
+                userId: 'integer',
+                title: 'string',
+                author: 'string',
+                genre: 'string',
+                image: 'string',
             },
         },
-        Art: {
+        art: {
             type: 'object',
             properties: {
-                artId: { type: 'integer' },
-                userId: { type: 'integer' },
-                title: { type: 'string' },
-                description: { type: 'string' },
-                publicationDate: { type: 'string' },
-                genre: { type: 'string' },
-                image: { type: 'string' },
+                artId: 'integer',
+                userId: 'integer' ,
+                title: 'string' ,
+                description: 'string' ,
+                publicationDate: 'string',
+                genre: 'string',
+                image: 'string',
             },
         },
     },

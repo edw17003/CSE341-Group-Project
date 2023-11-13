@@ -63,7 +63,7 @@
   },
   "components": {
     "schemas": {
-      "User": {
+      "users": {
         "type": "object",
         "properties": {
           "type": {
@@ -74,73 +74,38 @@
             "type": "object",
             "properties": {
               "googleId": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               },
               "displayName": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               },
               "firstName": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               },
               "lastName": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               },
               "image": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               },
               "roleId": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "integer"
-                  }
-                }
+                "type": "string",
+                "example": "integer"
               },
               "biography": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               }
             }
           }
         }
       },
-      "Role": {
+      "roles": {
         "type": "object",
         "properties": {
           "type": {
@@ -151,28 +116,18 @@
             "type": "object",
             "properties": {
               "roleId": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "integer"
-                  }
-                }
+                "type": "string",
+                "example": "integer"
               },
               "name": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               }
             }
           }
         }
       },
-      "Book": {
+      "books": {
         "type": "object",
         "properties": {
           "type": {
@@ -183,64 +138,34 @@
             "type": "object",
             "properties": {
               "bookId": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "integer"
-                  }
-                }
+                "type": "string",
+                "example": "integer"
               },
               "userId": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "integer"
-                  }
-                }
+                "type": "string",
+                "example": "integer"
               },
               "title": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               },
               "author": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               },
               "genre": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               },
               "image": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               }
             }
           }
         }
       },
-      "Art": {
+      "art": {
         "type": "object",
         "properties": {
           "type": {
@@ -251,67 +176,32 @@
             "type": "object",
             "properties": {
               "artId": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "integer"
-                  }
-                }
+                "type": "string",
+                "example": "integer"
               },
               "userId": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "integer"
-                  }
-                }
+                "type": "string",
+                "example": "integer"
               },
               "title": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               },
               "description": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               },
               "publicationDate": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               },
               "genre": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               },
               "image": {
-                "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "example": "string"
-                  }
-                }
+                "type": "string",
+                "example": "string"
               }
             }
           }
