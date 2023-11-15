@@ -1,376 +1,402 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "description": "This is an API server for a painting sales website.\n",
-      "version": "1.0.0",
-      "title": "Painting Sales Website",
-      "contact": {
-        "email": "con19008@byui.edu"
-      },
-      "license": {
-        "name": "Apache 2.0",
-        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Users API",
+    "description": "Collects and displays user information",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "local server"
+    },
+    {
+      "url": "https://cse341-groupproject.onrender.com/",
+      "description": "production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for managing users"
+    },
+    {
+      "name": "Roles",
+      "description": "API for managing roles"
+    },
+    {
+      "name": "Books",
+      "description": "API for managing books"
+    },
+    {
+      "name": "Art",
+      "description": "API for managing artworks"
+    }
+  ],
+  "paths": {
+    "/users/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all users",
+        "description": "Get all users information from the database",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
-    "host": "cse341-class05.onrender.com",
-    "basePath": "/",
-    "schemes": ["https"],
-    "tags": [
-      {
-        "name": "painting",
-        "description": "Operations about painting"
+    "/arts/": {
+      "get": {
+        "tags": ["Art"],
+        "summary": "Get all artworks",
+        "description": "Retrieves all artworks from the collection",
+        "operationId": "getAllArts",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "$ref": "#/components/schemas/art"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       },
-      {
-        "name": "user",
-        "description": "Operations about user"
-      },
-      {
-        "name": "Not Yet Implemented",
-        "description": "These API endpoints are designed and will be created in the near future"
+      "post": {
+        "tags": ["Art"],
+        "summary": "Create a new artwork",
+        "description": "Adds a new artwork to the collection",
+        "operationId": "createArt",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created art object",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Artwork created successfully",
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "default": {
+            "description": "An Artwork object",
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          }
+        }
       }
-    ],
-    "paths": {
-      "/painting/{stylename}": {
-        "get": {
-          "tags": ["painting"],
-          "summary": "Finds paintings by style",
-          "description": "Each painting has a unique style, this will basically find paintings by an exact style",
-          "operationId": "getPainting",
-          "produces": ["application/json"],
-          "parameters": [
-            {
-              "name": "stylename",
-              "in": "path",
-              "description": "The painting style",
-              "required": true,
-              "type": "string"
+    },
+    "/arts/{userId}": {
+      "get": {
+        "tags": ["Art"],
+        "summary": "Finds artwork by user Id",
+        "description": "Retrieves an artwork based on the user ID",
+        "operationId": "getArtUserId",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of the user to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/components/schemas/art"
             }
-          ],
-          "security": [
-            {
-              "petstore_auth": ["write:pets", "read:pets"]
+          },
+          "404": {
+            "description": "Artwork not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/arts/{artId}": {
+      "get": {
+        "tags": ["Art"],
+        "summary": "Finds artwork by Id",
+        "description": "Retrieves an artwork based on its ID",
+        "operationId": "getArt",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artId",
+            "in": "path",
+            "description": "ID of the artwork to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/components/schemas/art"
             }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "schema": {
-                "$ref": "#/definitions/Painting"
-              }
-            },
-            "400": {
-              "description": "Invalid painting style supplied"
-            },
-            "404": {
-              "description": "Painting style not found"
-            }
+          },
+          "404": {
+            "description": "Artwork not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
-      "/painting/": {
-        "get": {
-          "tags": ["painting"],
-          "summary": "Get all paintings",
-          "operationId": "getAllPaintss",
-          "produces": ["application/json"],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "schema": {
-                "type": "Array",
-                "$ref": "#/definitions/User"
-              }
-            },
-            "500": {
-              "description": "Error occurred"
+      "put": {
+        "tags": ["Art"],
+        "summary": "Updated an artwork",
+        "description": "Updates an existing artwork in the collection. This can only be done by the logged in user.",
+        "operationId": "updateArt",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artId",
+            "in": "path",
+            "description": "ID of the artwork to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated art object",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/art"
             }
           }
+        ],
+        "responses": {
+          "204": {
+            "description": "Artwork updated successfully"
+          },
+          "404": {
+            "description": "Artwork not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
-      },
-      "/user/login": {
-        "get": {
-          "tags": ["Not Yet Implemented"],
-          "summary": "Logs user into the system",
-          "operationId": "loginUser",
-          "produces": ["application/json"],
-          "parameters": [
-            {
-              "name": "username",
-              "in": "query",
-              "description": "The user name for login",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "password",
-              "in": "query",
-              "description": "The password for login in clear text",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "headers": {
-                "X-Rate-Limit": {
-                  "type": "integer",
-                  "format": "int32",
-                  "description": "calls per hour allowed by the user"
-                },
-                "X-Expires-After": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "date in UTC when token expires"
-                }
+      },      
+      "delete": {
+        "tags": ["Art"],
+        "summary": "Delete an artwork",
+        "description": "Deletes an artwork from de collection. This can only be done by the logged in user.",
+        "operationId": "deleteArt",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artId",
+            "in": "path",
+            "description": "The Id of artwork to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Artwork deleted successfully "
+          },
+          "400": {
+            "description": "Invalid artId supplied"
+          },
+          "404": {
+            "description": "Artwork not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "users": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "googleId": {
+                "type": "string",
+                "example": "string"
               },
-              "schema": {
-                "type": "string"
-              }
-            },
-            "400": {
-              "description": "Invalid username/password supplied"
-            }
-          }
-        }
-      },
-      "/user/logout": {
-        "get": {
-          "tags": ["Not Yet Implemented"],
-          "summary": "Logs out current logged in user session",
-          "operationId": "logoutUser",
-          "produces": ["application/json"],
-          "parameters": [],
-          "responses": {
-            "default": {
-              "description": "successful operation"
-            }
-          }
-        }
-      },
-      "/user/": {
-        "get": {
-          "tags": ["user"],
-          "summary": "Get all users",
-          "operationId": "getAllUsers",
-          "produces": ["application/json"],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "schema": {
-                "type": "Array",
-                "$ref": "#/definitions/User"
-              }
-            },
-            "500": {
-              "description": "Error occurred"
-            }
-          }
-        },
-        "post": {
-          "tags": ["user"],
-          "summary": "Create user",
-          "description": "This is for when a user creates an account",
-          "operationId": "createUser",
-          "produces": ["application/json"],
-          "parameters": [
-            {
-              "in": "body",
-              "name": "body",
-              "description": "Created user object",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/User"
-              }
-            }
-          ],
-          "responses": {
-            "default": {
-              "description": "A User object",
-              "schema": {
-                "$ref": "#/definitions/User"
+              "displayName": {
+                "type": "string",
+                "example": "string"
+              },
+              "firstName": {
+                "type": "string",
+                "example": "string"
+              },
+              "lastName": {
+                "type": "string",
+                "example": "string"
+              },
+              "image": {
+                "type": "string",
+                "example": "string"
+              },
+              "roleId": {
+                "type": "string",
+                "example": "integer"
+              },
+              "biography": {
+                "type": "string",
+                "example": "string"
               }
             }
           }
         }
       },
-      "/user/{username}": {
-        "get": {
-          "tags": ["user"],
-          "summary": "Get user by user name",
-          "operationId": "getUserByName",
-          "produces": ["application/json"],
-          "parameters": [
-            {
-              "name": "username",
-              "in": "path",
-              "description": "The name that needs to be fetched.",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "schema": {
-                "$ref": "#/definitions/User"
-              }
-            },
-            "400": {
-              "description": "Invalid username supplied"
-            },
-            "404": {
-              "description": "User not found"
-            }
-          }
-        },
-        "put": {
-          "tags": ["user"],
-          "summary": "Updated user",
-          "description": "This can only be done by the logged in user.",
-          "operationId": "updateUser",
-          "produces": ["application/json"],
-          "parameters": [
-            {
-              "name": "username",
-              "in": "path",
-              "description": "name that need to be updated",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "in": "body",
-              "name": "body",
-              "description": "Updated user object",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/User"
-              }
-            }
-          ],
-          "responses": {
-            "204": {
-              "description": "Successfully modified user"
-            },
-            "400": {
-              "description": "Invalid user supplied"
-            },
-            "404": {
-              "description": "User not found"
-            }
-          }
-        },
-        "delete": {
-          "tags": ["user"],
-          "summary": "Delete user",
-          "description": "This can only be done by the logged in user.",
-          "operationId": "deleteUser",
-          "produces": ["application/json"],
-          "parameters": [
-            {
-              "name": "username",
-              "in": "path",
-              "description": "The name that needs to be deleted",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "204": {
-              "description": "Successfully deleted user"
-            },
-            "400": {
-              "description": "Invalid username supplied"
-            },
-            "404": {
-              "description": "User not found"
-            }
-          }
-        }
-      }
-    },
-    "securityDefinitions": {
-      "petstore_auth": {
-        "type": "oauth2",
-        "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-        "flow": "implicit",
-        "scopes": {
-          "write:pets": "modify pets in your account",
-          "read:pets": "read your pets"
-        }
-      }
-    },
-    "definitions": {
-      "User": {
+      "roles": {
         "type": "object",
         "properties": {
-          "username": {
+          "type": {
             "type": "string",
-            "example": "agc"
+            "example": "object"
           },
-          "password": {
-            "type": "string",
-            "example": "Agc1234$"
-          },
-          "firstname": {
-            "type": "string",
-            "example": "Alvaro"
-          },
-          "lastname": {
-            "type": "string",
-            "example": "Condori"
-          },
-          "email": {
-            "type": "string",
-            "example": "agc@gmail.com"
-          },
-          "phonenumber": {
-            "type": "string",
-            "example": "543871234567"
-          },
-          "currentlocation": {
-            "type": "string",
-            "example": "Argentina"
-          },
-          "stylename": {
-            "type": "string",
-            "example": "Landscapes"
-          },
-          "message": {
-            "type": "string",
-            "example": ""
+          "properties": {
+            "type": "object",
+            "properties": {
+              "roleId": {
+                "type": "string",
+                "example": "integer"
+              },
+              "name": {
+                "type": "string",
+                "example": "string"
+              }
+            }
           }
         }
       },
-      "Painting": {
+      "books": {
         "type": "object",
         "properties": {
-          "painting_name": {
+          "type": {
             "type": "string",
-            "example": "Sunrise"
+            "example": "object"
           },
-          "stylename": {
+          "properties": {
+            "type": "object",
+            "properties": {
+              "bookId": {
+                "type": "string",
+                "example": "integer"
+              },
+              "userId": {
+                "type": "string",
+                "example": "integer"
+              },
+              "title": {
+                "type": "string",
+                "example": "string"
+              },
+              "author": {
+                "type": "string",
+                "example": "string"
+              },
+              "genre": {
+                "type": "string",
+                "example": "string"
+              },
+              "image": {
+                "type": "string",
+                "example": "string"
+              }
+            }
+          }
+        }
+      },
+      "art": {
+        "type": "object",
+        "properties": {
+          "type": {
             "type": "string",
-            "example": "Impressionism"
+            "example": "object"
           },
-          "author_name": {
-            "type": "string",
-            "example": "Claudia Dominguez"
-          },
-          "painting_description": {
-            "type": "string",
-            "example": "Two friends walking along the pier towards the sea"
-          },
-          "painting_date": {
-            "type": "string",
-            "format": "date",
-            "example": "01/01/2020"
-          },
-          "painting_technic": {
-            "type": "string",
-            "example": "oleo paint paste"
+          "properties": {
+            "type": "object",
+            "properties": {
+              "artId": {
+                "type": "string",
+                "example": "integer"
+              },
+              "userId": {
+                "type": "string",
+                "example": "integer"
+              },
+              "title": {
+                "type": "string",
+                "example": "string"
+              },
+              "description": {
+                "type": "string",
+                "example": "string"
+              },
+              "publicationDate": {
+                "type": "string",
+                "format": "date",
+                "example": "string"
+              },
+              "genre": {
+                "type": "string",
+                "example": "string"
+              },
+              "image": {
+                "type": "string",
+                "format": "url",
+                "example": "string"
+              }
+            }
           }
         }
       }
     }
   }
+}
+
+
