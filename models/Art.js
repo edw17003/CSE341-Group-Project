@@ -3,27 +3,27 @@ const mongoose = require('mongoose');
 const ArtSchema = new mongoose.Schema({
   artId: {
     type: String,
-    required: true,
+    required: true
   },
   userId: {
     type: String,
-    required: true,
+    required: true
   },
   title: {
     type: String,
-    required: true,
+    required: true
   },
   description: {
     type: String,
-    required: true,
+    required: true
   },
   publicationDate: {
     type: String,
-    required: true,
+    required: true
   },
   genre: {
     type: String,
-    required: true,
+    required: true
   },
   image: {
     type: String,
@@ -32,4 +32,3 @@ const ArtSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Art', ArtSchema, 'arts');
-

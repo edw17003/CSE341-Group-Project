@@ -4,7 +4,7 @@ const Role = require('../models/role');
 // Validation middleware for role creation
 const validateCreateRole = [
   body('roleId').isNumeric().withMessage('Role ID must be a number'),
-  body('roleName').notEmpty().withMessage('Role Name is required'),
+  body('roleName').notEmpty().withMessage('Role Name is required')
 ];
 
 // Middleware for handling validation errors
@@ -22,7 +22,7 @@ const createRole = async (req, res) => {
     // Extract role data from the request body
     const roleData = {
       roleId: req.body.roleId,
-      roleName: req.body.roleName,
+      roleName: req.body.roleName
     };
 
     const newRole = new Role(roleData);
@@ -89,7 +89,6 @@ const updateRole = async (req, res) => {
   }
 };
 
-
 // Delete a role by ID
 const deleteRole = async (req, res) => {
   try {
@@ -115,5 +114,5 @@ module.exports = {
   updateRole,
   deleteRole,
   validateCreateRole, // Export the validation middleware
-  handleValidationErrors, // Export the error handling middleware
+  handleValidationErrors // Export the error handling middleware
 };

@@ -19,7 +19,7 @@ exports.findAll = (req, res) => {
         lastName: 1,
         image: 1,
         roleId: 1,
-        biography: 1,
+        biography: 1
       }
     )
       .then((data) => {
@@ -27,8 +27,7 @@ exports.findAll = (req, res) => {
       })
       .catch((err) => {
         res.status(500).send({
-          message:
-            err.message || 'An error occurred while retrieving user.',
+          message: err.message || 'An error occurred while retrieving user.'
         });
       });
   } else {
@@ -44,15 +43,12 @@ exports.findById = (req, res) => {
   if (req.header('apiKey') === apiKey) {
     User.find({ googleId: googleId })
       .then((data) => {
-        if (!data)
-          res
-            .status(404)
-            .send({ message: 'No user found with id ' + googleId });
+        if (!data) res.status(404).send({ message: 'No user found with id ' + googleId });
         else res.send(data[0]);
       })
       .catch((err) => {
         res.status(500).send({
-          message: 'Error retrieving user with id ' + googleId,
+          message: 'Error retrieving user with id ' + googleId
         });
       });
   } else {

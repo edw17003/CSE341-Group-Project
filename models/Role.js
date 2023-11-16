@@ -5,12 +5,12 @@ const RoleSchema = new mongoose.Schema({
   roleId: {
     type: Number,
     unique: true,
-    required: true,
+    required: true
   },
   roleName: {
     type: String,
-    required: true,
-  },
+    required: true
+  }
 });
 
 // Create the Role model
