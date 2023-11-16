@@ -27,7 +27,11 @@
     "nodemon": "^2.0.15",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
-    "swagger-autogen": "^2.23.6",
+    "swagger-autogen": "^2.23.6"
+  },
+  "devDependencies": {
+    "express-validator": "^7.0.1",
+    "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
   }
 }
