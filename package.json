@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "prettier": "prettier --write \"src/**/*.js\"",
+    "format": "prettier --write \"**/*.js\"",
+    "swagger": "node ./swagger.js"
   },
   "repository": {
     "type": "git"
@@ -30,7 +35,9 @@
     "swagger-autogen": "^2.23.6"
   },
   "devDependencies": {
+    "eslint": "^8.53.0",
     "express-validator": "^7.0.1",
+    "prettier": "^3.1.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
   }

@@ -1,18 +1,18 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Users API",
-    "description": "Collects and displays user information",
+    "title": "Group Project API",
+    "description": "API for managing users, roles, books, and art in a group project",
     "version": "1.0.0"
   },
   "servers": [
     {
       "url": "http://localhost:8080",
-      "description": "local server"
+      "description": "Local Development Server"
     },
     {
       "url": "https://cse341-groupproject.onrender.com/",
-      "description": "production server"
+      "description": "Production Server"
     }
   ],
   "tags": [
@@ -30,10 +30,40 @@
     },
     {
       "name": "Art",
-      "description": "API for managing artworks"
+      "description": "API for managing art"
     }
   ],
   "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/dashboard": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/users/": {
       "get": {
         "tags": [
@@ -60,20 +90,36 @@
         }
       }
     },
-    "/arts/": {
+    "/users/{_id}": {
       "get": {
-        "tags": ["Art"],
-        "summary": "Get all artworks",
-        "description": "Retrieves all artworks from the collection",
-        "operationId": "getAllArts",
-        "produces": ["application/json"],
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get a user",
+        "description": "Get a user",
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/roles/roles": {
+      "get": {
+        "description": "",
         "responses": {
           "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "$ref": "#/components/schemas/art"
-            }
+            "description": "OK"
           },
           "500": {
             "description": "Internal Server Error"
@@ -81,98 +127,59 @@
         }
       },
       "post": {
-        "tags": ["Art"],
-        "summary": "Create a new artwork",
-        "description": "Adds a new artwork to the collection",
-        "operationId": "createArt",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Created art object",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/art"
-            }
-          }
-        ],
+        "description": "",
         "responses": {
           "201": {
-            "description": "Artwork created successfully",
-            "schema": {
-              "$ref": "#/components/schemas/art"
-            }
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
-          },
-          "default": {
-            "description": "An Artwork object",
-            "schema": {
-              "$ref": "#/components/schemas/art"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "roleId": {
+                    "example": "any"
+                  },
+                  "roleName": {
+                    "example": "any"
+                  }
+                }
+              }
             }
           }
         }
       }
     },
-    "/arts/{userId}": {
+    "/roles/roles/{roleId}": {
       "get": {
-        "tags": ["Art"],
-        "summary": "Finds artwork by user Id",
-        "description": "Retrieves an artwork based on the user ID",
-        "operationId": "getArtUserId",
-        "produces": ["application/json"],
+        "description": "",
         "parameters": [
           {
-            "name": "userId",
+            "name": "roleId",
             "in": "path",
-            "description": "ID of the user to retrieve",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/components/schemas/art"
-            }
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
-            "description": "Artwork not found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/arts/{artId}": {
-      "get": {
-        "tags": ["Art"],
-        "summary": "Finds artwork by Id",
-        "description": "Retrieves an artwork based on its ID",
-        "operationId": "getArt",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "artId",
-            "in": "path",
-            "description": "ID of the artwork to retrieve",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/components/schemas/art"
-            }
-          },
-          "404": {
-            "description": "Artwork not found"
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -180,65 +187,67 @@
         }
       },
       "put": {
-        "tags": ["Art"],
-        "summary": "Updated an artwork",
-        "description": "Updates an existing artwork in the collection. This can only be done by the logged in user.",
-        "operationId": "updateArt",
-        "produces": ["application/json"],
+        "description": "",
         "parameters": [
           {
-            "name": "artId",
+            "name": "roleId",
             "in": "path",
-            "description": "ID of the artwork to update",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Updated art object",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/art"
+              "type": "string"
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "Artwork updated successfully"
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
-            "description": "Artwork not found"
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
           }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "roleName": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
-      },      
+      },
       "delete": {
-        "tags": ["Art"],
-        "summary": "Delete an artwork",
-        "description": "Deletes an artwork from de collection. This can only be done by the logged in user.",
-        "operationId": "deleteArt",
-        "produces": ["application/json"],
+        "description": "",
         "parameters": [
           {
-            "name": "artId",
+            "name": "roleId",
             "in": "path",
-            "description": "The Id of artwork to delete",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
-          "204": {
-            "description": "Artwork deleted successfully "
+          "200": {
+            "description": "OK"
           },
           "400": {
-            "description": "Invalid artId supplied"
+            "description": "Bad Request"
           },
           "404": {
-            "description": "Artwork not found"
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -379,7 +388,6 @@
               },
               "publicationDate": {
                 "type": "string",
-                "format": "date",
                 "example": "string"
               },
               "genre": {
@@ -388,7 +396,6 @@
               },
               "image": {
                 "type": "string",
-                "format": "url",
                 "example": "string"
               }
             }
@@ -398,5 +405,3 @@
     }
   }
 }
-
-

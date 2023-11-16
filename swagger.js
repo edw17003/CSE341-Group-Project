@@ -1,5 +1,5 @@
 const swaggerAutogen = require('swagger-autogen')({ openapi: '3.0.0' });
-require('../models/Role');
+require('./models/role');
 
 const url = 'http://localhost:8080';
 const schemes = ['http'];
