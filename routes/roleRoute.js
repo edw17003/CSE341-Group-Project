@@ -1,7 +1,9 @@
+// Import necessary modules
 const express = require('express');
 const router = express.Router();
 const { body, param, validationResult } = require('express-validator');
 const roleController = require('../controllers/roleController');
+const Role = require('../models/Role');
 
 // Validation middleware for role ID
 const validateRoleId = param('roleId').isNumeric().withMessage('Invalid role ID format');
@@ -22,16 +24,40 @@ const handleValidationErrors = (req, res, next) => {
 };
 
 // Role Routes
+
+// POST new role
+router.post('/roles', validateRoleData, handleValidationErrors, async (req, res) => {
+  try {
+    const { roleId, roleName } = req.body;
+    
+    // Check if the role ID already exists
+    const existingRole = await Role.findOne({ roleId });
+    if (existingRole) {
+      return res.status(400).json({ message: 'Role ID already exists' });
+    }
+
+    const newRole = new Role({ roleId, roleName });
+    await newRole.save();
+
+    // Send only roleId in the response
+    res.status(201).json({ success: `Role is created successfully`, roleId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+// GET all roles
 router.get('/roles', roleController.getAllRoles);
+
+// GET role by ID
 router.get('/roles/:roleId', validateRoleId, handleValidationErrors, roleController.getSingleRole);
-router.post('/roles', validateRoleData, handleValidationErrors, roleController.createRole);
-router.put(
-  '/roles/:roleId',
-  validateRoleId,
-  validateRoleData,
-  handleValidationErrors,
-  roleController.updateRole
-);
+
+// PUT update role by ID
+router.put('/roles/:roleId', validateRoleId, validateRoleData, handleValidationErrors, roleController.updateRole);
+
+// DELETE role by ID
 router.delete('/roles/:roleId', validateRoleId, handleValidationErrors, roleController.deleteRole);
 
+// Export the router for use in other files
 module.exports = router;

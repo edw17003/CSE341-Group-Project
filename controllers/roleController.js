@@ -1,5 +1,5 @@
 const { body, validationResult } = require('express-validator');
-const Role = require('../models/role');
+const Role = require('../models/Role');
 
 // Validation middleware for role creation
 const validateCreateRole = [
@@ -16,7 +16,7 @@ const handleValidationErrors = (req, res, next) => {
   next();
 };
 
-// Create a new role
+// Create role
 const createRole = async (req, res) => {
   try {
     // Extract role data from the request body
@@ -31,12 +31,16 @@ const createRole = async (req, res) => {
     res.status(201).json({ success: 'Role created successfully', roleId: newRole.roleId });
   } catch (error) {
     if (error.name === 'MongoError' && error.code === 11000) {
+      // MongoDB duplicate key error (Role ID already exists)
       return res.status(400).json({ error: 'Role ID already exists.' });
     }
+
     console.error('Error creating a role:', error);
+    // Other unexpected errors
     res.status(500).json({ error: 'An error occurred while creating the role.' });
   }
 };
+
 
 // Get all roles
 const getAllRoles = async (req, res) => {

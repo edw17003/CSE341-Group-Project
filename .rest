@@ -49,8 +49,8 @@ curl -X PUT \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-    "roleId": 1,
-    "roleName": "panan"
+    "roleId": 2,
+    "roleName": "Danladi"
   }'
 
 
