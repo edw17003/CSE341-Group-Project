@@ -114,18 +114,7 @@
         }
       }
     },
-    "/roles/roles": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
+    "/roles/": {
       "post": {
         "description": "",
         "responses": {
@@ -156,9 +145,20 @@
             }
           }
         }
+      },
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
-    "/roles/roles/{roleId}": {
+    "/roles/{roleId}": {
       "get": {
         "description": "",
         "parameters": [

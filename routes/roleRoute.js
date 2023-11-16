@@ -26,7 +26,7 @@ const handleValidationErrors = (req, res, next) => {
 // Role Routes
 
 // POST new role
-router.post('/roles', validateRoleData, handleValidationErrors, async (req, res) => {
+router.post('/', validateRoleData, handleValidationErrors, async (req, res) => {
   try {
     const { roleId, roleName } = req.body;
     
@@ -48,16 +48,16 @@ router.post('/roles', validateRoleData, handleValidationErrors, async (req, res)
 });
 
 // GET all roles
-router.get('/roles', roleController.getAllRoles);
+router.get('/', roleController.getAllRoles);
 
 // GET role by ID
-router.get('/roles/:roleId', validateRoleId, handleValidationErrors, roleController.getSingleRole);
+router.get('/:roleId', validateRoleId, handleValidationErrors, roleController.getSingleRole);
 
 // PUT update role by ID
-router.put('/roles/:roleId', validateRoleId, validateRoleData, handleValidationErrors, roleController.updateRole);
+router.put('/:roleId', validateRoleId, validateRoleData, handleValidationErrors, roleController.updateRole);
 
 // DELETE role by ID
-router.delete('/roles/:roleId', validateRoleId, handleValidationErrors, roleController.deleteRole);
+router.delete('/:roleId', validateRoleId, handleValidationErrors, roleController.deleteRole);
 
 // Export the router for use in other files
 module.exports = router;
