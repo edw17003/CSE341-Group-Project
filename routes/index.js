@@ -1,10 +1,12 @@
 const routes = require('express').Router();
 const user = require('./user');
+const roleRoute = require('./roleRoute')
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const axios = require('axios');
 
 routes.use('/', require('./swagger'));
 routes.use('/users', user);
+routes.use('/roles', roleRoute)
 routes.get('/', ensureGuest, (req, res) => {
   res.render('login', {
     layout: 'login',

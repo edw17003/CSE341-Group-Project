@@ -1,4 +1,5 @@
 const swaggerAutogen = require('swagger-autogen')({ openapi: '3.0.0' });
+require('../models/Role');
 
 const url = 'http://localhost:8080';
 const schemes = ['http'];
@@ -87,3 +88,4 @@ const outputFile = './swagger-output.json';
 const endpointsFiles = ['./routes/index.js'];
 
 swaggerAutogen(outputFile, endpointsFiles, doc);
+console.log('Swagger runs successfully');
