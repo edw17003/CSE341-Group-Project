@@ -55,3 +55,38 @@ exports.findById = (req, res) => {
     res.send('Invalid apiKey, please read the documentation.');
   }
 };
+
+exports.create = (req, res) => {
+  // #swagger.tags = ['Users']
+  // #swagger.summary = 'Create a new user'
+  // #swagger.description = 'Create a new user and insert it into the database'
+  if (req.header('apiKey') === apiKey) {
+
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
+  }
+};
+
+exports.editById = (req, res) => {
+  // #swagger.tags = ['Users']
+  // #swagger.summary = 'Edit a user'
+  // #swagger.description = 'Update user information by Google ID'
+  const googleId = req.params._id;
+  if (req.header('apiKey') === apiKey) {
+
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
+  }  
+};
+
+exports.deleteById = (req, res) => {
+  // #swagger.tags = ['Users']
+  // #swagger.summary = 'Delete a user'
+  // #swagger.description = 'Delete user information by Google ID'
+  const googleId = req.params._id;
+  if (req.header('apiKey') === apiKey) {
+
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
+  } 
+};
