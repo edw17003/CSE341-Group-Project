@@ -38,17 +38,17 @@ exports.findAll = (req, res) => {
 exports.findById = (req, res) => {
   // #swagger.tags = ['Users']
   // #swagger.summary = 'Get a user'
-  // #swagger.description = 'Get a user's information from the database'
+  // #swagger.description = 'Get a users information from the database'
   const googleId = req.params._id;
   if (req.header('apiKey') === apiKey) {
-    User.find({ googleId: googleId })
+    User.findOne({ googleId: googleId })
       .then((data) => {
         if (!data) res.status(404).send({ message: 'No user found with id ' + googleId });
-        else res.send(data[0]);
+        else res.send(data);
       })
       .catch((err) => {
         res.status(500).send({
-          message: 'Error retrieving user with id ' + googleId
+          message: 'Error retrieving user with id ' + googleId,
         });
       });
   } else {
