@@ -56,28 +56,59 @@ exports.findById = (req, res) => {
   }
 };
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   // #swagger.tags = ['Users']
   // #swagger.summary = 'Create a new user'
   // #swagger.description = 'Create a new user and insert it into the database'
-  if (req.header('apiKey') === apiKey) {
+  if (!req.body.firstName) {
+    console.log(req.body)
+    res.status(400).send({ message: 'Content cannot be empty' })
+    return;
+  }
 
+  if (req.header('apiKey') === apiKey) {
+    try {
+      const user = new User({
+        _id: req.body._id,
+        googleId: req.body.googleId,
+        displayName: req.body.displayName,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        image: req.body.image,
+        roleId: req.body.roleId,
+        biography: req.body.biography
+      }
+    )
+      const data = await user.save();
+      res.send(data)
+    } catch(e) {
+      res.status(500).send({ message: e.message })
+    }
   } else {
     res.send('Invalid apiKey, please read the documentation.');
   }
 };
 
-exports.editById = (req, res) => {
+exports.editById = async (req, res) => {
   // #swagger.tags = ['Users']
   // #swagger.summary = 'Edit a user'
   // #swagger.description = 'Update user information by Google ID'
   const googleId = req.params._id;
   if (req.header('apiKey') === apiKey) {
-
+    try {
+      const updatedUser = await User.findOneAndUpdate({ googleId }, req.body, { new: true });
+      if (!updatedUser) {
+        return res.status(404).send({ message: 'No user found with id ' + googleId });
+      }
+      res.status(200).json(updatedUser);
+    } catch (e) {
+      res.status(500).send({ message: 'Error updating user: ' + e.message });
+    }
   } else {
     res.send('Invalid apiKey, please read the documentation.');
-  }  
+  }
 };
+
 
 exports.deleteById = (req, res) => {
   // #swagger.tags = ['Users']
@@ -85,7 +116,19 @@ exports.deleteById = (req, res) => {
   // #swagger.description = 'Delete user information by Google ID'
   const googleId = req.params._id;
   if (req.header('apiKey') === apiKey) {
-
+    User.findOneAndDelete({ googleId: googleId })
+    .then((user) => {
+      if (!user) {
+        res.status(404).send({ message: 'No user found with id ' + googleId });
+      } else {
+        res.send({ message: 'User deleted successfully' });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: 'Error deleting user with id ' + googleId
+      });
+    });
   } else {
     res.send('Invalid apiKey, please read the documentation.');
   } 
