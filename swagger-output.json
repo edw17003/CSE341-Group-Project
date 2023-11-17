@@ -114,18 +114,44 @@
         }
       }
     },
+
     "/roles/": {
       "post": {
-        "description": "",
+        "tags": ["Roles"],
+        "summary": "Create a new role",
+        "description": "Adds a new role to the system",
+        "operationId": "createRole",
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Role created successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": "Role created successfully",
+                  "roleId": "generatedRoleId"
+                }
+              }
+            }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Invalid request payload"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "An error occurred while creating the role."
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -135,32 +161,62 @@
                 "type": "object",
                 "properties": {
                   "roleId": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "generatedRoleId"
                   },
                   "roleName": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "Administrator"
                   }
-                }
+                },
+                "required": ["roleName"]
               }
             }
           }
         }
       },
       "get": {
-        "description": "",
+        "tags": ["Roles"],
+        "summary": "Get all roles",
+        "description": "Get a list of all roles in the system",
+        "operationId": "getAllRoles",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "roleId": "generatedRoleId1",
+                    "roleName": "Administrator"
+                  },
+                  {
+                    "roleId": "generatedRoleId2",
+                    "roleName": "User"
+                  }
+                ]
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "An error occurred while retrieving roles."
+                }
+              }
+            }
           }
         }
       }
     },
     "/roles/{roleId}": {
       "get": {
-        "description": "",
+        "tags": ["Roles"],
+        "summary": "Get a role by ID",
+        "description": "Get detailed information about a specific role",
+        "operationId": "getRoleById",
         "parameters": [
           {
             "name": "roleId",
@@ -168,26 +224,59 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "ID of the role to retrieve"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "roleId": "generatedRoleId",
+                  "roleName": "Administrator"
+                }
+              }
+            }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Invalid role ID"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Role not found"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "An error occurred while retrieving the role."
+                }
+              }
+            }
           }
         }
       },
       "put": {
-        "description": "",
+        "tags": ["Roles"],
+        "summary": "Update a role by ID",
+        "description": "Update information about a specific role",
+        "operationId": "updateRoleById",
         "parameters": [
           {
             "name": "roleId",
@@ -195,21 +284,50 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "ID of the role to update"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": "Role updated successfully"
+                }
+              }
+            }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Invalid role ID or request payload"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Role not found"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "An error occurred while updating the role."
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -219,16 +337,21 @@
                 "type": "object",
                 "properties": {
                   "roleName": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "Administrator"
                   }
-                }
+                },
+                "required": ["roleName"]
               }
             }
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": ["Roles"],
+        "summary": "Delete a role by ID",
+        "description": "Delete a specific role from the system",
+        "operationId": "deleteRoleById",
         "parameters": [
           {
             "name": "roleId",
@@ -236,18 +359,234 @@
             "required": true,
             "schema": {
               "type": "string"
+            },
+            "description": "ID of the role to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": "Role deleted successfully"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Invalid role ID"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Role not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "An error occurred while deleting the role."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+    "/arts/": {
+      "get": {
+        "tags": ["Art"],
+        "summary": "Get all artworks",
+        "description": "Retrieves all artworks from the collection",
+        "operationId": "getAllArts",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "$ref": "#/components/schemas/art"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Art"],
+        "summary": "Create a new artwork",
+        "description": "Adds a new artwork to the collection",
+        "operationId": "createArt",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created art object",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Artwork created successfully",
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "default": {
+            "description": "An Artwork object",
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          }
+        }
+      }
+    },
+    "/arts/{userId}": {
+      "get": {
+        "tags": ["Art"],
+        "summary": "Finds artwork by user Id",
+        "description": "Retrieves an artwork based on the user ID",
+        "operationId": "getArtUserId",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of the user to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          },
+          "404": {
+            "description": "Artwork not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/arts/{artId}": {
+      "get": {
+        "tags": ["Art"],
+        "summary": "Finds artwork by Id",
+        "description": "Retrieves an artwork based on its ID",
+        "operationId": "getArt",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artId",
+            "in": "path",
+            "description": "ID of the artwork to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          },
+          "404": {
+            "description": "Artwork not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Art"],
+        "summary": "Updated an artwork",
+        "description": "Updates an existing artwork in the collection. This can only be done by the logged in user.",
+        "operationId": "updateArt",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artId",
+            "in": "path",
+            "description": "ID of the artwork to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated art object",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/art"
             }
           }
         ],
         "responses": {
           "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
+            "description": "Artwork updated successfully"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Artwork not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },      
+      "delete": {
+        "tags": ["Art"],
+        "summary": "Delete an artwork",
+        "description": "Deletes an artwork from de collection. This can only be done by the logged in user.",
+        "operationId": "deleteArt",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artId",
+            "in": "path",
+            "description": "The Id of artwork to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Artwork deleted successfully "
+          },
+          "400": {
+            "description": "Invalid artId supplied"
+          },
+          "404": {
+            "description": "Artwork not found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -255,153 +594,5 @@
         }
       }
     }
-  },
-  "components": {
-    "schemas": {
-      "users": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "example": "object"
-          },
-          "properties": {
-            "type": "object",
-            "properties": {
-              "googleId": {
-                "type": "string",
-                "example": "string"
-              },
-              "displayName": {
-                "type": "string",
-                "example": "string"
-              },
-              "firstName": {
-                "type": "string",
-                "example": "string"
-              },
-              "lastName": {
-                "type": "string",
-                "example": "string"
-              },
-              "image": {
-                "type": "string",
-                "example": "string"
-              },
-              "roleId": {
-                "type": "string",
-                "example": "integer"
-              },
-              "biography": {
-                "type": "string",
-                "example": "string"
-              }
-            }
-          }
-        }
-      },
-      "roles": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "example": "object"
-          },
-          "properties": {
-            "type": "object",
-            "properties": {
-              "roleId": {
-                "type": "string",
-                "example": "integer"
-              },
-              "name": {
-                "type": "string",
-                "example": "string"
-              }
-            }
-          }
-        }
-      },
-      "books": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "example": "object"
-          },
-          "properties": {
-            "type": "object",
-            "properties": {
-              "bookId": {
-                "type": "string",
-                "example": "integer"
-              },
-              "userId": {
-                "type": "string",
-                "example": "integer"
-              },
-              "title": {
-                "type": "string",
-                "example": "string"
-              },
-              "author": {
-                "type": "string",
-                "example": "string"
-              },
-              "genre": {
-                "type": "string",
-                "example": "string"
-              },
-              "image": {
-                "type": "string",
-                "example": "string"
-              }
-            }
-          }
-        }
-      },
-      "art": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "example": "object"
-          },
-          "properties": {
-            "type": "object",
-            "properties": {
-              "artId": {
-                "type": "string",
-                "example": "integer"
-              },
-              "userId": {
-                "type": "string",
-                "example": "integer"
-              },
-              "title": {
-                "type": "string",
-                "example": "string"
-              },
-              "description": {
-                "type": "string",
-                "example": "string"
-              },
-              "publicationDate": {
-                "type": "string",
-                "example": "string"
-              },
-              "genre": {
-                "type": "string",
-                "example": "string"
-              },
-              "image": {
-                "type": "string",
-                "example": "string"
-              }
-            }
-          }
-        }
-      }
-    }
   }
-}
+  
