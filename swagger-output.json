@@ -34,6 +34,36 @@
     }
   ],
   "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/dashboard": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/users/": {
       "get": {
         "tags": [
@@ -58,68 +88,6 @@
             "description": "Internal Server Error"
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Create a new user",
-        "description": "Create a new user and insert it into the database",
-        "parameters": [
-          {
-            "name": "apiKey",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "example": "any"
-                  },
-                  "_id": {
-                    "example": "any"
-                  },
-                  "googleId": {
-                    "example": "any"
-                  },
-                  "displayName": {
-                    "example": "any"
-                  },
-                  "lastName": {
-                    "example": "any"
-                  },
-                  "image": {
-                    "example": "any"
-                  },
-                  "roleId": {
-                    "example": "any"
-                  },
-                  "biography": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/users/{_id}": {
@@ -128,7 +96,7 @@
           "Users"
         ],
         "summary": "Get a user",
-        "description": "Get a users information from the database",
+        "description": "Get a user",
         "parameters": [
           {
             "name": "_id",
@@ -137,110 +105,53 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "apiKey",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Edit a user",
-        "description": "Update user information by Google ID",
-        "parameters": [
-          {
-            "name": "_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "apiKey",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Delete a user",
-        "description": "Delete user information by Google ID",
-        "parameters": [
-          {
-            "name": "_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "apiKey",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          "default": {
+            "description": ""
           }
         }
       }
     },
+
     "/roles/": {
       "post": {
-        "description": "",
+        "tags": ["Roles"],
+        "summary": "Create a new role",
+        "description": "Adds a new role to the system",
+        "operationId": "createRole",
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Role created successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": "Role created successfully",
+                  "roleId": "generatedRoleId"
+                }
+              }
+            }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Invalid request payload"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "An error occurred while creating the role."
+                }
+              }
+            }
           }
         },
         "requestBody": {
@@ -250,29 +161,253 @@
                 "type": "object",
                 "properties": {
                   "roleId": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "generatedRoleId"
                   },
                   "roleName": {
-                    "example": "any"
+                    "type": "string",
+                    "example": "Administrator"
                   }
-                }
+                },
+                "required": ["roleName"]
               }
             }
           }
         }
       },
       "get": {
-        "description": "",
+        "tags": ["Roles"],
+        "summary": "Get all roles",
+        "description": "Get a list of all roles in the system",
+        "operationId": "getAllRoles",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "roleId": "generatedRoleId1",
+                    "roleName": "Administrator"
+                  },
+                  {
+                    "roleId": "generatedRoleId2",
+                    "roleName": "User"
+                  }
+                ]
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "An error occurred while retrieving roles."
+                }
+              }
+            }
           }
         }
       }
     },
+    "/roles/{roleId}": {
+      "get": {
+        "tags": ["Roles"],
+        "summary": "Get a role by ID",
+        "description": "Get detailed information about a specific role",
+        "operationId": "getRoleById",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the role to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "roleId": "generatedRoleId",
+                  "roleName": "Administrator"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Invalid role ID"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Role not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "An error occurred while retrieving the role."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Roles"],
+        "summary": "Update a role by ID",
+        "description": "Update information about a specific role",
+        "operationId": "updateRoleById",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the role to update"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": "Role updated successfully"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Invalid role ID or request payload"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Role not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "An error occurred while updating the role."
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "roleName": {
+                    "type": "string",
+                    "example": "Administrator"
+                  }
+                },
+                "required": ["roleName"]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Roles"],
+        "summary": "Delete a role by ID",
+        "description": "Delete a specific role from the system",
+        "operationId": "deleteRoleById",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the role to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": "Role deleted successfully"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Invalid role ID"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Role not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "An error occurred while deleting the role."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
     "/arts/": {
       "get": {
         "tags": ["Art"],
@@ -458,251 +593,6 @@
           }
         }
       }
-    },
-    "/roles/{roleId}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "roleId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "roleId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "roleName": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "roleId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "users": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "example": "object"
-          },
-          "properties": {
-            "type": "object",
-            "properties": {
-              "googleId": {
-                "type": "string",
-                "example": "string"
-              },
-              "displayName": {
-                "type": "string",
-                "example": "string"
-              },
-              "firstName": {
-                "type": "string",
-                "example": "string"
-              },
-              "lastName": {
-                "type": "string",
-                "example": "string"
-              },
-              "image": {
-                "type": "string",
-                "example": "string"
-              },
-              "roleId": {
-                "type": "string",
-                "example": "integer"
-              },
-              "biography": {
-                "type": "string",
-                "example": "string"
-              }
-            }
-          }
-        }
-      },
-      "roles": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "example": "object"
-          },
-          "properties": {
-            "type": "object",
-            "properties": {
-              "roleId": {
-                "type": "string",
-                "example": "integer"
-              },
-              "name": {
-                "type": "string",
-                "example": "string"
-              }
-            }
-          }
-        }
-      },
-      "books": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "example": "object"
-          },
-          "properties": {
-            "type": "object",
-            "properties": {
-              "bookId": {
-                "type": "string",
-                "example": "integer"
-              },
-              "userId": {
-                "type": "string",
-                "example": "integer"
-              },
-              "title": {
-                "type": "string",
-                "example": "string"
-              },
-              "author": {
-                "type": "string",
-                "example": "string"
-              },
-              "genre": {
-                "type": "string",
-                "example": "string"
-              },
-              "image": {
-                "type": "string",
-                "example": "string"
-              }
-            }
-          }
-        }
-      },
-      "art": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "example": "object"
-          },
-          "properties": {
-            "type": "object",
-            "properties": {
-              "artId": {
-                "type": "string",
-                "example": "integer"
-              },
-              "userId": {
-                "type": "string",
-                "example": "integer"
-              },
-              "title": {
-                "type": "string",
-                "example": "string"
-              },
-              "description": {
-                "type": "string",
-                "example": "string"
-              },
-              "publicationDate": {
-                "type": "string",
-                "example": "string"
-              },
-              "genre": {
-                "type": "string",
-                "example": "string"
-              },
-              "image": {
-                "type": "string",
-                "example": "string"
-              }
-            }
-          }
-        }
-      }
     }
   }
-}
+  
