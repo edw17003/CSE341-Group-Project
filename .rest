@@ -9,6 +9,26 @@ GET http://localhost:8080/users/108697017691255307413
 accept: application/json 
 apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
 
+### Get all artworks
+GET http://localhost:8080/art/
+accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+### Create artwork
+POST http://localhost:8080/art/ HTTP/1.1
+content-type: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+{
+    "artId": "",
+    "userId": "",
+    "title": "",
+    "description": "",
+    "publicationDate": "",
+    "genre": "",
+    "image": ""
+}
+
 ## PRODUCTION
 ### Get all users
 GET https://cse341-groupproject.onrender.com/users/

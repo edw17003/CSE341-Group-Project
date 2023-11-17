@@ -67,6 +67,15 @@
         "description": "Retrieves all artworks from the collection",
         "operationId": "getAllArts",
         "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful operation",
@@ -95,6 +104,13 @@
             "schema": {
               "$ref": "#/components/schemas/art"
             }
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -121,7 +137,7 @@
         "tags": ["Art"],
         "summary": "Finds artwork by user Id",
         "description": "Retrieves an artwork based on the user ID",
-        "operationId": "getArtUserId",
+        "operationId": "getArtuserId",
         "produces": ["application/json"],
         "parameters": [
           {
@@ -130,6 +146,13 @@
             "description": "ID of the user to retrieve",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -162,6 +185,13 @@
             "description": "ID of the artwork to retrieve",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -201,6 +231,13 @@
             "schema": {
               "$ref": "#/components/schemas/art"
             }
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -228,6 +265,13 @@
             "description": "The Id of artwork to delete",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
