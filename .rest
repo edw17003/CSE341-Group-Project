@@ -3,8 +3,44 @@
 # ___________BOOKS
 
 ###
+GET http://localhost:8080/books
+
+###
+GET http://localhost:8080/books/655717d6fc4f6c61f0f1eb37
+###
 GET http://localhost:8080/books/bookAuthor/any
 
+###
+POST http://localhost:8080/books HTTP/1.1
+content-type: application/json
+
+{   
+   "title": "The Starry night",
+    "author": "Vincent Van Gogh",
+    "genre": "post Impressionist",
+    "publicationDate": "1989",
+    "description": "The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh",
+    "associatedArtwork": "self-portrait"
+}
+
+###
+PUT http://localhost:8080/books/655717d6fc4f6c61f0f1eb37 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Picasso and ceramics",
+    "author": "Pablo Picasso",
+    "genre": "ceramic",
+    "publicationDate": "1982",
+    "description": "Pablo picasso art in ceramic",
+    "associatedArtwork": "none"
+}
+
+###
+DELETE http://localhost:8080/books/65570a7073a6303574db6a81 HTTP/1.1
+
+
+# ___________BOOKS END
 
 ## ___________USERS:
 ### Get all users
