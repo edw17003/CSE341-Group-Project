@@ -1,16 +1,14 @@
-const express = require('express');
-const router = express.Router();
+const routes = require('express').Router();
+const arts = require('../controllers/art.js');
 
-const artController = require('../controllers/art.js');
-
-router.get('/', artController.getAllArts);
-router.post('/', artController.createArt);
+routes.get('/', arts.getAllArts);
+routes.post('/', arts.createArt);
 //router.get('/:userId', artController.getArtuserId);
-router.get('/:artId', artController.getArt);
-router.put('/:artId', artController.updateArt);
-router.delete('/:artId', artController.deleteArt);
+//router.get('/:artId', artController.getArt);
+//router.put('/:artId', artController.updateArt);
+//router.delete('/:artId', artController.deleteArt);
 
-module.exports = router;
+module.exports = routes;
 
 
 
