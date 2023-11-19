@@ -34,32 +34,188 @@
     }
   ],
   "paths": {
-    "/": {
+    "/arts/": {
       "get": {
-        "description": "",
+        "tags": ["Art"],
+        "summary": "Get all artworks",
+        "description": "Retrieves all artworks from the collection",
+        "operationId": "getAllArts",
+        "produces": ["application/json"],
         "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "$ref": "#/components/schemas/art"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Art"],
+        "summary": "Create a new artwork",
+        "description": "Adds a new artwork to the collection",
+        "operationId": "createArt",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created art object",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Artwork created successfully",
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
           "default": {
-            "description": ""
+            "description": "An Artwork object",
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
           }
         }
       }
     },
-    "/dashboard": {
+    "/arts/{userId}": {
       "get": {
-        "description": "",
+        "tags": ["Art"],
+        "summary": "Finds artwork by user Id",
+        "description": "Retrieves an artwork based on the user ID",
+        "operationId": "getArtUserId",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of the user to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          },
+          "404": {
+            "description": "Artwork not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/api-docs": {
+    "/arts/{artId}": {
       "get": {
-        "description": "",
+        "tags": ["Art"],
+        "summary": "Finds artwork by Id",
+        "description": "Retrieves an artwork based on its ID",
+        "operationId": "getArt",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artId",
+            "in": "path",
+            "description": "ID of the artwork to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          },
+          "404": {
+            "description": "Artwork not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Art"],
+        "summary": "Updated an artwork",
+        "description": "Updates an existing artwork in the collection. This can only be done by the logged in user.",
+        "operationId": "updateArt",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artId",
+            "in": "path",
+            "description": "ID of the artwork to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated art object",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/art"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Artwork updated successfully"
+          },
+          "404": {
+            "description": "Artwork not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },      
+      "delete": {
+        "tags": ["Art"],
+        "summary": "Delete an artwork",
+        "description": "Deletes an artwork from de collection. This can only be done by the logged in user.",
+        "operationId": "deleteArt",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "artId",
+            "in": "path",
+            "description": "The Id of artwork to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Artwork deleted successfully "
+          },
+          "400": {
+            "description": "Invalid artId supplied"
+          },
+          "404": {
+            "description": "Artwork not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -321,7 +477,6 @@
       }
     },
     "/books/{_id}": {
-    "/arts/": {
       "get": {
         "tags": [
           "Books"
@@ -471,6 +626,9 @@
     },
     "/roles/": {
       "post": {
+        "tags": [
+          "Roles"
+        ],
         "description": "",
         "responses": {
           "201": {
@@ -502,6 +660,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Roles"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -513,108 +674,12 @@
         }
       }
     },
-    "/roles/": {
-      "post": {
-        "tags": ["Roles"],
-        "summary": "Create a new role",
-        "description": "Adds a new role to the system",
-        "operationId": "createRole",
-        "responses": {
-          "201": {
-            "description": "Role created successfully",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": "Role created successfully",
-                  "roleId": "generatedRoleId"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "example": {
-                  "error": "Invalid request payload"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "example": {
-                  "error": "An error occurred while creating the role."
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "roleId": {
-                    "type": "string",
-                    "example": "generatedRoleId"
-                  },
-                  "roleName": {
-                    "type": "string",
-                    "example": "Administrator"
-                  }
-                },
-                "required": ["roleName"]
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": ["Roles"],
-        "summary": "Get all roles",
-        "description": "Get a list of all roles in the system",
-        "operationId": "getAllRoles",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "example": [
-                  {
-                    "roleId": "generatedRoleId1",
-                    "roleName": "Administrator"
-                  },
-                  {
-                    "roleId": "generatedRoleId2",
-                    "roleName": "User"
-                  }
-                ]
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "example": {
-                  "error": "An error occurred while retrieving roles."
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/roles/{roleId}": {
       "get": {
-        "tags": ["Roles"],
-        "summary": "Get a role by ID",
-        "description": "Get detailed information about a specific role",
-        "operationId": "getRoleById",
+        "tags": [
+          "Roles"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "roleId",
@@ -622,59 +687,29 @@
             "required": true,
             "schema": {
               "type": "string"
-            },
-            "description": "ID of the role to retrieve"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "example": {
-                  "roleId": "generatedRoleId",
-                  "roleName": "Administrator"
-                }
-              }
-            }
+            "description": "OK"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "example": {
-                  "error": "Invalid role ID"
-                }
-              }
-            }
+            "description": "Bad Request"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "example": {
-                  "error": "Role not found"
-                }
-              }
-            }
+            "description": "Not Found"
           },
           "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "example": {
-                  "error": "An error occurred while retrieving the role."
-                }
-              }
-            }
+            "description": "Internal Server Error"
           }
         }
       },
       "put": {
-        "tags": ["Roles"],
-        "summary": "Update a role by ID",
-        "description": "Update information about a specific role",
-        "operationId": "updateRoleById",
+        "tags": [
+          "Roles"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "roleId",
@@ -682,50 +717,21 @@
             "required": true,
             "schema": {
               "type": "string"
-            },
-            "description": "ID of the role to update"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": "Role updated successfully"
-                }
-              }
-            }
+            "description": "OK"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "example": {
-                  "error": "Invalid role ID or request payload"
-                }
-              }
-            }
+            "description": "Bad Request"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "example": {
-                  "error": "Role not found"
-                }
-              }
-            }
+            "description": "Not Found"
           },
           "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "example": {
-                  "error": "An error occurred while updating the role."
-                }
-              }
-            }
+            "description": "Internal Server Error"
           }
         },
         "requestBody": {
@@ -735,21 +741,19 @@
                 "type": "object",
                 "properties": {
                   "roleName": {
-                    "type": "string",
-                    "example": "Administrator"
+                    "example": "any"
                   }
-                },
-                "required": ["roleName"]
+                }
               }
             }
           }
         }
       },
       "delete": {
-        "tags": ["Roles"],
-        "summary": "Delete a role by ID",
-        "description": "Delete a specific role from the system",
-        "operationId": "deleteRoleById",
+        "tags": [
+          "Roles"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "roleId",
@@ -757,54 +761,26 @@
             "required": true,
             "schema": {
               "type": "string"
-            },
-            "description": "ID of the role to delete"
+            }
           }
         ],
         "responses": {
           "204": {
-            "description": "No Content",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": "Role deleted successfully"
-                }
-              }
-            }
+            "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "example": {
-                  "error": "Invalid role ID"
-                }
-              }
-            }
+            "description": "Bad Request"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "example": {
-                  "error": "Role not found"
-                }
-              }
-            }
+            "description": "Not Found"
           },
           "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "example": {
-                  "error": "An error occurred while deleting the role."
-                }
-              }
-            }
+            "description": "Internal Server Error"
           }
         }
       }
-    },
+    }
+  },
   "components": {
     "schemas": {
       "users": {
@@ -953,5 +929,4 @@
       }
     }
   }
-}
 }
