@@ -8,6 +8,8 @@ db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.User = require('./User.js');
 db.Art = require('./Art.js')(mongoose);
+db.Book = require('./Books.js')
+
 module.exports = db;
 
 

@@ -62,6 +62,7 @@ app.use(passport.session());
 
 // Routes
 app.use('/', require('./routes'));
+app.use('/', require('./routes/book'));
 app.use('/', require('./routes/roleRoute'));
 app.use('/auth', require('./routes/auth'));
 
