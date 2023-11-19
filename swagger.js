@@ -223,12 +223,12 @@ const doc = {
     books: {
       type: 'object',
       properties: {
-        bookId: 'integer',
-        userId: 'integer',
         title: 'string',
         author: 'string',
         genre: 'string',
-        image: 'string'
+        publicationDate: 'string',
+        description: 'string',
+        associatedArtwork: 'string'
       }
     },
     art: {

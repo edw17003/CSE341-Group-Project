@@ -1,5 +1,140 @@
 ## ___________LOCALHOST____________
 
+# ___________BOOKS
+
+###
+GET http://localhost:8080/books
+
+###
+GET http://localhost:8080/books/655717d6fc4f6c61f0f1eb37
+###
+GET http://localhost:8080/books/bookAuthor/any
+
+###
+POST http://localhost:8080/books HTTP/1.1
+content-type: application/json
+
+{   
+   "title": "The Starry night",
+    "author": "Vincent Van Gogh",
+    "genre": "post Impressionist",
+    "publicationDate": "1989",
+    "description": "The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh",
+    "associatedArtwork": "self-portrait"
+}
+
+###
+PUT http://localhost:8080/books/655717d6fc4f6c61f0f1eb37 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Picasso and ceramics",
+    "author": "Pablo Picasso",
+    "genre": "ceramic",
+    "publicationDate": "1982",
+    "description": "Pablo picasso art in ceramic",
+    "associatedArtwork": "none"
+}
+
+###
+DELETE http://localhost:8080/books/65570a7073a6303574db6a81 HTTP/1.1
+
+
+# ___________BOOKS END
+
+## ___________USERS:
+### Get all users
+curl -X GET 'http://localhost:8080/users/' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+
+### Get user by ID
+curl -X GET 'http://localhost:8080/users/108697017691255307413' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+
+### Create user 
+curl -X POST 'http://localhost:8080/users/' \ 
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -d '{
+    "googleId": "1",
+    "displayName": "displayName",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "image": "image",
+    "roleId": 1,
+    "biography": "biography"
+  }'
+
+### Edit user
+curl -X PUT 'http://localhost:8080/users/1' \ 
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -d '{
+    "displayName": "displayName1",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "image": "image",
+    "roleId": 1,
+    "biography": "biography"
+  }'
+
+### Delete user
+curl -X DELETE 'http://localhost:8080/users/1' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+
+## ___________ROLES:
+### create a new role
+curl -X POST \
+  'http://localhost:8080/roles' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "roleId": 2,
+    "roleName": "Dagwan"
+  }'
+
+### get all roles
+curl -X GET \
+  'http://localhost:8080/roles'
+
+### get role by id
+curl -X GET \
+  'http://localhost:8080/roles/2'
+
+### update role
+curl -X PUT \
+  'http://localhost:8080/roles/2' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "roleId": 2,
+    "roleName": "Danladi"
+  }'
+
+### delete role by id
+curl -X DELETE \
+  'http://localhost:8080/roles/2'
+
+
+
+## ___________PRODUCTION___________
+### Get all users
+GET https://cse341-groupproject.onrender.com/users/
+accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+### Get by ID 
+GET https://cse341-groupproject.onrender.com/users/108697017691255307413 
+accept: application/json 
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+=======
+## ___________LOCALHOST____________
+
 ## ___________USERS:
 ### Get all users
 curl -X GET 'http://localhost:8080/users/' \
