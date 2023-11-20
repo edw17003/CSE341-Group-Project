@@ -117,6 +117,10 @@ content-type: application/json
 ###
 DELETE http://localhost:8080/books/65570a7073a6303574db6a81 HTTP/1.1
 
+## ___________ART
+###
+GET http://localhost:8080/art/
+
 ## ___________PRODUCTION____________
 ### Get all users
 GET https://cse341-groupproject.onrender.com/users/
