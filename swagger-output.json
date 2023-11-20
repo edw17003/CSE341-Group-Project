@@ -417,23 +417,6 @@
     },
     "/books/": {
       "get": {
-        "tags": ["Art"],
-        "summary": "Get all artworks",
-        "description": "Retrieves all artworks from the collection",
-        "operationId": "getAllArts",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "apiKey",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
         "tags": [
           "Books"
         ],
@@ -449,28 +432,6 @@
         }
       },
       "post": {
-        "tags": ["Art"],
-        "summary": "Create a new artwork",
-        "description": "Adds a new artwork to the collection",
-        "operationId": "createArt",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Created art object",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/art"
-            }
-          },
-          {
-            "name": "apiKey",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
         "tags": [
           "Books"
         ],
@@ -517,11 +478,6 @@
     },
     "/books/{_id}": {
       "get": {
-        "tags": ["Art"],
-        "summary": "Finds artwork by user Id",
-        "description": "Retrieves an artwork based on the user ID",
-        "operationId": "getArtuserId",
-        "produces": ["application/json"],
         "tags": [
           "Books"
         ],
@@ -532,11 +488,6 @@
             "name": "_id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "apiKey",
-            "in": "header",
             "schema": {
               "type": "string"
             }
@@ -547,46 +498,7 @@
             "description": "OK"
           },
           "404": {
-            "description": "Artwork not found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/art/{artId}": {
-      "get": {
-        "tags": ["Art"],
-        "summary": "Finds artwork by Id",
-        "description": "Retrieves an artwork based on its ID",
-        "operationId": "getArt",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "artId",
-            "in": "path",
-            "description": "ID of the artwork to retrieve",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "apiKey",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/components/schemas/art"
-            }
-          },
-          "404": {
-            "description": "Artwork not found"
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -604,13 +516,6 @@
             "name": "_id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "apiKey",
-            "in": "header",
             "schema": {
               "type": "string"
             }
@@ -701,11 +606,6 @@
             "name": "author",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "apiKey",
-            "in": "header",
             "schema": {
               "type": "string"
             }
