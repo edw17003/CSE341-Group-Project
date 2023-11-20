@@ -1,12 +1,16 @@
 const routes = require('express').Router();
 const user = require('./user');
+const art = require('./art');
 const book = require('./book');
 const roleRoute = require('./roleRoute');
+
+
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const axios = require('axios');
 
 routes.use('/', require('./swagger'));
 routes.use('/users', user);
+routes.use('/arts', art);
 routes.use('/books', book);
 routes.use('/roles', roleRoute);
 routes.get('/', ensureGuest, (req, res) => {
@@ -38,3 +42,4 @@ routes.get('/dashboard', ensureAuth, async (req, res) => {
 });
 
 module.exports = routes;
+

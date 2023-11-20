@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const ArtSchema = new mongoose.Schema({
   artId: {
-    type: String,
+    type: Number,
     required: true
   },
   userId: {
-    type: String,
+    type: Number,
     required: true
   },
   title: {
@@ -31,4 +31,4 @@ const ArtSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Art', ArtSchema, 'arts');
+module.exports = mongoose.model('Art', ArtSchema, 'art');
