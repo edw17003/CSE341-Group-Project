@@ -16,7 +16,7 @@ describe('Art Controller', () => {
       title: 'Impressionism',
       description: 'A creative approach while maintaining good quality.',
       publicationDate: '2023-11-21',
-      genre: 'Landcaping',
+      genre: 'Landscaping', 
       image: 'someimage.jpeg',
     },
   ];
@@ -31,7 +31,7 @@ describe('Art Controller', () => {
     Art.find.mockResolvedValue(mockArts);
 
     const response = await request(app)
-      .get('/arts')  // Update the path to match your actual route
+      .get('/arts') // Update the path to match your actual route
       .set('apiKey', 'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N');
 
     expect(response.statusCode).toBe(200);
@@ -40,7 +40,7 @@ describe('Art Controller', () => {
 
   it('should handle invalid apiKey', async () => {
     const response = await request(app)
-      .get('/arts')  // Update the path to match your actual route
+      .get('/arts') // Update the path to match your actual route
       .set('apiKey', 'INVALID_API_KEY');
 
     expect(response.statusCode).toBe(401);
@@ -52,7 +52,7 @@ describe('Art Controller', () => {
     Art.find.mockRejectedValue(new Error('Some unexpected error'));
 
     const response = await request(app)
-      .get('/arts')  // Update the path to match your actual route
+      .get('/arts') // Update the path to match your actual route
       .set('apiKey', 'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N');
 
     expect(response.statusCode).toBe(500);
