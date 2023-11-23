@@ -1,9 +1,6 @@
-// Import necessary modules
-const express = require('express');
-const router = express.Router();
-const { body, param, validationResult } = require('express-validator');
+const routes = require('express').Router();
 const roleController = require('../controllers/roleController');
-const Role = require('../models/Role');
+const { body, param, validationResult } = require('express-validator');
 
 // Validation middleware for role ID
 const validateRoleId = param('roleId').isNumeric().withMessage('Invalid role ID format');
@@ -26,38 +23,20 @@ const handleValidationErrors = (req, res, next) => {
 // Role Routes
 
 // POST new role
-router.post('/', validateRoleData, handleValidationErrors, async (req, res) => {
-  try {
-    const { roleId, roleName } = req.body;
-    
-    // Check if the role ID already exists
-    const existingRole = await Role.findOne({ roleId });
-    if (existingRole) {
-      return res.status(400).json({ message: 'Role ID already exists' });
-    }
-
-    const newRole = new Role({ roleId, roleName });
-    await newRole.save();
-
-    // Send only roleId in the response
-    res.status(201).json({ success: `Role is created successfully`, roleId });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
+routes.post('/', validateRoleData, handleValidationErrors, async (req, res) => {
+  roleController.createRole(req, res);
 });
 
 // GET all roles
-router.get('/', roleController.getAllRoles);
+routes.get('/', roleController.getAllRoles);
 
 // GET role by ID
-router.get('/:roleId', validateRoleId, handleValidationErrors, roleController.getSingleRole);
+routes.get('/:roleId', validateRoleId, handleValidationErrors, roleController.getSingleRole);
 
 // PUT update role by ID
-router.put('/:roleId', validateRoleId, validateRoleData, handleValidationErrors, roleController.updateRole);
+routes.put('/:roleId', validateRoleId, validateRoleData, handleValidationErrors, roleController.updateRole);
 
 // DELETE role by ID
-router.delete('/:roleId', validateRoleId, handleValidationErrors, roleController.deleteRole);
+routes.delete('/:roleId', validateRoleId, handleValidationErrors, roleController.deleteRole);
 
-// Export the router for use in other files
-module.exports = router;
+module.exports = routes;

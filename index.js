@@ -64,6 +64,7 @@ app.use(passport.session());
 app.use('/', require('./routes'));
 app.use('/', require('./routes/book'));
 app.use('/', require('./routes/roleRoute'));
+app.use('/', require('./routes/art'));
 app.use('/auth', require('./routes/auth'));
 
 const PORT = process.env.PORT || 8080;

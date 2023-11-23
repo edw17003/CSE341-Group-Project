@@ -2,6 +2,7 @@ const routes = require('express').Router();
 const user = require('./user');
 const book = require('./book');
 const roleRoute = require('./roleRoute');
+const art = require('./art')
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const axios = require('axios');
 
@@ -9,6 +10,7 @@ routes.use('/', require('./swagger'));
 routes.use('/users', user);
 routes.use('/books', book);
 routes.use('/roles', roleRoute);
+routes.use('/arts', art)
 routes.get('/', ensureGuest, (req, res) => {
   res.render('login', {
     layout: 'login'
