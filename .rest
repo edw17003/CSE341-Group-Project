@@ -40,6 +40,12 @@ curl -X PUT 'http://localhost:8080/users/1' \
     "biography": "biography"
   }'
 
+  ### Delete user
+curl -X DELETE 'http://localhost:8080/users/1' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+
+
 
 ## ___________ROLES:
 ### create a new role
@@ -47,75 +53,96 @@ curl -X POST \
   'http://localhost:8080/roles' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
   -d '{
-    "roleId": 2,
+    "roleId": 6,
     "roleName": "Dagwan"
   }'
 
+
 ### get all roles
 curl -X GET \
-  'http://localhost:8080/roles'
+  'http://localhost:8080/roles' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+
 
 ### get role by id
 curl -X GET \
-  'http://localhost:8080/roles/2'
+  'http://localhost:8080/roles/2' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+
 
 ### update role
 curl -X PUT \
-  'http://localhost:8080/roles/2' \
+  'http://localhost:8080/roles/6' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
   -d '{
     "roleId": 2,
     "roleName": "Danladi"
   }'
 
+
 ### delete role by id
 curl -X DELETE \
-  'http://localhost:8080/roles/2'
+  'http://localhost:8080/roles/2' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
 
-### Delete user
-curl -X DELETE 'http://localhost:8080/users/1' \
+
+## ___________ARTS:
+### Create art
+curl -X POST 'http://localhost:8080/arts/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -d '{
+    "userId": "2",
+    "title": "Impressionism  ",
+    "description": "A creative approach while maintaining good quality.",
+    "publicationDate": "2023-11-23",
+    "genre": "Landcaping",
+    "image": "someimage.jpeg"
+  }'
+
+### Get all arts
+curl -X GET 'http://localhost:8080/arts/' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
 
-## ___________BOOKS
-###
-GET http://localhost:8080/books
 
-###
-GET http://localhost:8080/books/655717d6fc4f6c61f0f1eb37
-###
-GET http://localhost:8080/books/bookAuthor/any
+### Get art by ID
+curl -X GET 'http://localhost:8080/arts/655e608bdfe7464d5bb5f442' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
 
-###
-POST http://localhost:8080/books HTTP/1.1
-content-type: application/json
 
-{   
-   "title": "The Starry night",
-    "author": "Vincent Van Gogh",
-    "genre": "post Impressionist",
-    "publicationDate": "1989",
-    "description": "The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh",
-    "associatedArtwork": "self-portrait"
-}
+### Get art by user ID
+curl -X GET 'http://localhost:8080/arts/2' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
 
-###
-PUT http://localhost:8080/books/655717d6fc4f6c61f0f1eb37 HTTP/1.1
-content-type: application/json
+### Update art
+curl -X PUT 'http://localhost:8080/arts/655f5fb8edefaa83bb6eb795' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -d '{
+    "userId": "1",
+    "title": "Cubism  ",
+    "description": "Exhibits high-quality abstraction, adhering to compositional principles",
+    "publicationDate": "2023-11-22",
+    "genre": "Potriat",
+    "image": "someimage.jpeg"
+  }'
 
-{
-    "title": "Picasso and ceramics",
-    "author": "Pablo Picasso",
-    "genre": "ceramic",
-    "publicationDate": "1982",
-    "description": "Pablo picasso art in ceramic",
-    "associatedArtwork": "none"
-}
 
-###
-DELETE http://localhost:8080/books/65570a7073a6303574db6a81 HTTP/1.1
+### Delete art
+curl -X DELETE 'http://localhost:8080/arts/655f5fb8edefaa83bb6eb795' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+
+
 
 ## ___________ART
 ###

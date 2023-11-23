@@ -64,8 +64,18 @@ app.use(passport.session());
 app.use('/', require('./routes'));
 app.use('/', require('./routes/book'));
 app.use('/', require('./routes/roleRoute'));
+app.use('/', require('./routes/art'));
 app.use('/auth', require('./routes/auth'));
 
-const PORT = process.env.PORT || 8080;
+// Export the app for testing purposes
+module.exports = app;
 
-app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
+// Start the server only if not in testing mode
+if (process.env.NODE_ENV !== 'test') {
+  const PORT = process.env.PORT || 8080;
+  app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
+}
+
+// const PORT = process.env.PORT || 8080;
+
+// app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
