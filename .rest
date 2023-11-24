@@ -40,7 +40,7 @@ curl -X PUT 'http://localhost:8080/users/1' \
     "biography": "biography"
   }'
 
-  ### Delete user
+### Delete user
 curl -X DELETE 'http://localhost:8080/users/1' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
