@@ -53,7 +53,7 @@ describe('Art Controller - createArt', () => {
     });
 
     // Additional checks if needed
-    expect(response.body._id).toBeDefined(); // Check if ID is defined
+    expect(response.body._id).toBeDefined(); 
     // Add other property checks as needed
   }, 10000); // Increase the test timeout to 10 seconds
 });

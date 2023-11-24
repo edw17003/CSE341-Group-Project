@@ -138,9 +138,10 @@ curl -X PUT 'http://localhost:8080/arts/655f5fb8edefaa83bb6eb795' \
 
 
 ### Delete art
-curl -X DELETE 'http://localhost:8080/arts/655f5fb8edefaa83bb6eb795' \
+curl -X DELETE 'http://localhost:8080/arts/656052cc0ab92197aadde8b1' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+
 
 
 
