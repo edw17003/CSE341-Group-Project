@@ -7,7 +7,7 @@ const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.User = require('./User.js');
-db.Art = require('./Art.js')(mongoose);
+db.Art = require('./Art.js');
 db.Book = require('./Books.js')
 db.Art = require('./Art.js')
 
