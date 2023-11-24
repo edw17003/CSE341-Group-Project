@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../index');
-const User = require('../models/User');
+const User = require('../models/User'); // Assuming you have a User model
 
 jest.mock('../models/User', () => ({
   findOneAndDelete: jest.fn(),  // Mock the findOneAndDelete method

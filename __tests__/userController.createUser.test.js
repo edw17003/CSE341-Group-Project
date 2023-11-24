@@ -1,7 +1,7 @@
 // Import necessary modules
 const request = require('supertest');
 const app = require('../index');
-const User = require('../models/User');
+const User = require('../models/User'); // Assuming you have a User model
 
 // Mock data for testing
 const mockUser = {
@@ -56,7 +56,7 @@ describe('User Controller - createUser', () => {
     });
 
     // Additional checks if needed
-    expect(response.body._id).toBeDefined();
+    expect(response.body._id).toBeDefined(); 
     // Add other property checks as needed
   }, 10000); // Increase the test timeout to 10 seconds
 });
