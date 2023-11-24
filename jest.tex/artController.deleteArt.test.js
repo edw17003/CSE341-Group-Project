@@ -30,7 +30,7 @@ describe('Art Controller - deleteArt', () => {
 
     const artId = '655f61fbcf0026c037230355';  // Replace with an existing artId
     const response = await request(app)
-      .delete(`/arts/${artId}`)  // Updated the path to match your actual route
+      .delete(`/arts/${artId}`) 
       .set('apiKey', 'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N');
 
     expect(response.statusCode).toBe(200);

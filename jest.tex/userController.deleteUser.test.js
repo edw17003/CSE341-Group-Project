@@ -28,9 +28,9 @@ describe('User Controller - deleteUser', () => {
     // Mock the findOneAndDelete method to return the mockUser when called
     User.findOneAndDelete.mockResolvedValue(mockUser);
 
-    const userId = '1';  
+    const userId = '1';  // Replace with an existing userId
     const response = await request(app)
-      .delete(`/users/${userId}`)  
+      .delete(`/users/${userId}`)  // Updated the path to match your actual route
       .set('apiKey', 'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N');
 
     expect(response.statusCode).toBe(200);

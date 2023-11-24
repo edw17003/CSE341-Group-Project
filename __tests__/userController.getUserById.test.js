@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../index');
-const User = require('../models/User'); // Assuming you have a User model
+const User = require('../models/User'); 
 
 // Mock the User model
 jest.mock('../models/User', () => ({

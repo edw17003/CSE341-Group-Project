@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../index');
-const User = require('../models/User'); 
+const User = require('../models/User');
 
 jest.mock('../models/User', () => ({
   find: jest.fn(),
