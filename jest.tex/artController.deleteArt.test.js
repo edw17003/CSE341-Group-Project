@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../index');
-const Art = require('../models/Art');
+const Art = require('../models/Books');
 
 jest.mock('../models/Art', () => ({
   findOneAndDelete: jest.fn(),  // Mock the findOneAndDelete method

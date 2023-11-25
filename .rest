@@ -192,7 +192,7 @@ apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRll
 }
 
 ###
-DELETE http://localhost:8080/books/655ca3687b7883983fb0d402 HTTP/1.1
+DELETE http://localhost:8080/books/655717d6fc4f6c61f0f1eb37 HTTP/1.1
 accept: application/json
 apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
 
