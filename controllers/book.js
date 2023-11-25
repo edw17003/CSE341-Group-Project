@@ -9,8 +9,7 @@ exports.findAll = (req, res) => {
   // #swagger.tags = ['Books']
   // #swagger.summary = 'Get all books'
   // #swagger.description = 'Get all books information from the database'
-  // if (req.header('apiKey') === apiKey) {
-  if (1===1) {  
+  if (req.header('apiKey') === apiKey) {
     Book.find(
       {},
       {
@@ -41,8 +40,7 @@ exports.findById = (req, res) => {
   // #swagger.summary = 'Get a book by Id'
   // #swagger.description = 'Get a book information from the database'
   let bookId = req.params._id;
-  // if (req.header('apiKey') === apiKey) {
-    if (1===1) {   
+  if (req.header('apiKey') === apiKey) { 
     Book.findById({ _id: bookId })
       .then((data) => {
         if (!data) res.status(404).send({ message: 'No book found with id ' + bookId });
@@ -64,8 +62,7 @@ exports.getByAuthor = (req, res) => {
   // #swagger.summary = 'Get a book by author'
   // #swagger.description = 'Get a book information from the database by the author'
   let bookAuthor = req.params.author;
-  // if (req.header('apiKey') === apiKey) {
-    if (1===1) {   
+  if (req.header('apiKey') === apiKey) {
     Book.findOne({ author: bookAuthor })
       .then((data) => {
         if (!data) res.status(404).send({ message: 'No book found with author ' + bookAuthor });
@@ -87,8 +84,7 @@ exports.create = async (req, res) => {
   // #swagger.description = 'Create a new book and insert it into the database'
  
 
-  // if (req.header('apiKey') === apiKey) {
-    if (1===1) {    
+  if (req.header('apiKey') === apiKey) {
     try {
       const book = new Book({
         title: req.body.title,
@@ -114,8 +110,7 @@ exports.editById = async (req, res) => {
   // #swagger.summary = 'Edit a book'
   // #swagger.description = 'Update book information by id'
   const bookId = req.params._id;
-  // if (req.header('apiKey') === apiKey) {
-  if (1===1) {
+  if (req.header('apiKey') === apiKey) {
     try {
 
       //validate inputs
@@ -143,8 +138,7 @@ exports.deleteById = (req, res) => {
   // #swagger.summary = 'Delete a book'
   // #swagger.description = 'Delete book information by id'
   const bookId = req.params._id;
-  // if (req.header('apiKey') === apiKey) {
-  if (1===1) {
+  if (req.header('apiKey') === apiKey) {
     Book.findOneAndDelete({ _id: bookId })
     .then((book) => {
       if (!book) {
