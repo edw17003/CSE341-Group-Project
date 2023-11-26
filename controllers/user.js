@@ -80,7 +80,7 @@ exports.create = async (req, res) => {
       }
     )
       const data = await user.save();
-      res.send(data)
+      res.status(201).send(data)
     } catch(e) {
       res.status(500).send({ message: e.message })
     }

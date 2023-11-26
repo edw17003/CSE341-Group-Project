@@ -7,7 +7,7 @@ curl -X GET 'http://localhost:8080/users/' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
 
 ### Get user by ID
-curl -X GET 'http://localhost:8080/users/108697017691255307413' \
+curl -X GET 'http://localhost:8080/users/1' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
 
@@ -40,7 +40,7 @@ curl -X PUT 'http://localhost:8080/users/1' \
     "biography": "biography"
   }'
 
-  ### Delete user
+### Delete user
 curl -X DELETE 'http://localhost:8080/users/1' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
@@ -138,10 +138,66 @@ curl -X PUT 'http://localhost:8080/arts/655f5fb8edefaa83bb6eb795' \
 
 
 ### Delete art
-curl -X DELETE 'http://localhost:8080/arts/655f5fb8edefaa83bb6eb795' \
+curl -X DELETE 'http://localhost:8080/arts/656052cc0ab92197aadde8b1' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
 
+# ___________BOOKS
+
+###
+GET http://localhost:8080/books
+accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+
+###
+GET http://localhost:8080/books/655717d6fc4f6c61f0f1eb37
+accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+###
+GET http://localhost:8080/books/bookAuthor/any
+accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+
+###
+POST http://localhost:8080/books HTTP/1.1
+content-type: application/json
+accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+{   
+   "title": "The Starry night",
+    "author": "Vincent Van Gogh",
+    "genre": "post Impressionist",
+    "publicationDate": "1989",
+    "description": "The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh",
+    "associatedArtwork": "self-portrait"
+}
+
+###
+PUT http://localhost:8080/books/6561a98cfbebfb9f1e838c50 HTTP/1.1
+content-type: application/json
+accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+{
+    "title": "Picasso and ceramics",
+    "author": "Pablo Picasso",
+    "genre": "ceramic",
+    "publicationDate": "1982",
+    "description": "Pablo picasso art in ceramic",
+    "associatedArtwork": "edit test"
+}
+
+###
+DELETE http://localhost:8080/books/655717d6fc4f6c61f0f1eb37 HTTP/1.1
+accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+
+# ___________BOOKS END
 
 
 ## ___________ART
