@@ -46,7 +46,6 @@ curl -X DELETE 'http://localhost:8080/users/1' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
 
 
-
 ## ___________ROLES:
 ### create a new role
 curl -X POST \
@@ -142,9 +141,6 @@ curl -X DELETE 'http://localhost:8080/arts/656052cc0ab92197aadde8b1' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
 
-## ___________ART
-###
-GET http://localhost:8080/art/
 
 ## ___________PRODUCTION____________
 ### Get all users

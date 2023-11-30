@@ -975,7 +975,7 @@
                 "example": "string"
               },
               "genre": {
-                "type": "string"chat,
+                "type": "string",
                 "example": "string"
               },
               "image": {
