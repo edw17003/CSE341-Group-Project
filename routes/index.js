@@ -11,7 +11,6 @@ routes.use('/users', user);
 routes.use('/arts', art);
 routes.use('/books', book);
 routes.use('/roles', roleRoute);
-routes.use('/arts', art)
 routes.get('/', ensureGuest, (req, res) => {
   res.render('login', {
     layout: 'login'

@@ -20,3 +20,7 @@ Ensure that Node.js and npm are installed on your machine.
 ## Run Unit Tests
 - npm test
 
+## jwt token
+-npm i jsonwebtoken -s 
+- npm install bcryptjs  
+

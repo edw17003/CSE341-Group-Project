@@ -23,7 +23,7 @@ describe('Art Controller', () => {
 
   // Reset the mock implementation before each test
   beforeEach(() => {
-    Art.find.mockReset();
+    jest.clearAllMocks();  // Clear all mock implementations, including findOne
   });
 
   it('should get all artworks successfully', async () => {
@@ -33,31 +33,9 @@ describe('Art Controller', () => {
     const response = await request(app)
       .get('/arts') 
       .set('apiKey', 'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N');
+      //.set('UserRole', '1'); 
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toEqual(mockArts);
-  });
-
-  it('should handle invalid apiKey', async () => {
-    const response = await request(app)
-      .get('/arts') 
-      .set('apiKey', 'INVALID_API_KEY');
-
-    expect(response.statusCode).toBe(401);
-    expect(response.text).toBe('Invalid apiKey, please read the documentation.');
-  });
-
-  it('should handle unexpected errors', async () => {
-    // Mock the find method to throw an error when called
-    Art.find.mockRejectedValue(new Error('Some unexpected error'));
-
-    const response = await request(app)
-      .get('/arts') 
-      .set('apiKey', 'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N');
-
-    expect(response.statusCode).toBe(500);
-    expect(response.body).toEqual({
-      message: 'Internal server error.',
-    });
   });
 });

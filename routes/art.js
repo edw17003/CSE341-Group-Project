@@ -2,11 +2,12 @@ const express = require('express');
 const { body, param } = require('express-validator');
 const router = express.Router();
 const artController = require('../controllers/art');
+const { checkRoleAuth, checkAuth } = require('../middleware/jwtAuth');
 
 // Define routes
 
 // Get all arts
-router.get('/', artController.getAllArts);
+router.get('/', checkAuth, checkRoleAuth(['1']), artController.getAllArts);
 
 // Create a new art
 router.post(
