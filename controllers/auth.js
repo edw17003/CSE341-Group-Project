@@ -4,13 +4,13 @@ const userModel = require('../models/User')
 
 //login
 const loginCtrl = async (req, res) => {
-    try {
+        try {
         const {email, password } = req.body;
         const user = await userModel.findOne({ email });
 
         if (!user) {
             res.status(404)
-            res.sed({error: "User not found"})
+            res.send({error: "User not found"})
         }
 
         const checkPassword = await compare(password, user.password)
