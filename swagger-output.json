@@ -34,188 +34,32 @@
     }
   ],
   "paths": {
-    "/arts/": {
+    "/": {
       "get": {
-        "tags": ["Art"],
-        "summary": "Get all artworks",
-        "description": "Retrieves all artworks from the collection",
-        "operationId": "getAllArts",
-        "produces": ["application/json"],
+        "description": "",
         "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "$ref": "#/components/schemas/art"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Art"],
-        "summary": "Create a new artwork",
-        "description": "Adds a new artwork to the collection",
-        "operationId": "createArt",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Created art object",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/art"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Artwork created successfully",
-            "schema": {
-              "$ref": "#/components/schemas/art"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
           "default": {
-            "description": "An Artwork object",
-            "schema": {
-              "$ref": "#/components/schemas/art"
-            }
+            "description": ""
           }
         }
       }
     },
-    "/arts/{userId}": {
+    "/dashboard": {
       "get": {
-        "tags": ["Art"],
-        "summary": "Finds artwork by user Id",
-        "description": "Retrieves an artwork based on the user ID",
-        "operationId": "getArtUserId",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "description": "ID of the user to retrieve",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "description": "",
         "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/components/schemas/art"
-            }
-          },
-          "404": {
-            "description": "Artwork not found"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          "default": {
+            "description": ""
           }
         }
       }
     },
-    "/arts/{artId}": {
+    "/api-docs": {
       "get": {
-        "tags": ["Art"],
-        "summary": "Finds artwork by Id",
-        "description": "Retrieves an artwork based on its ID",
-        "operationId": "getArt",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "artId",
-            "in": "path",
-            "description": "ID of the artwork to retrieve",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "description": "",
         "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/components/schemas/art"
-            }
-          },
-          "404": {
-            "description": "Artwork not found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Art"],
-        "summary": "Updated an artwork",
-        "description": "Updates an existing artwork in the collection. This can only be done by the logged in user.",
-        "operationId": "updateArt",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "artId",
-            "in": "path",
-            "description": "ID of the artwork to update",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Updated art object",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/art"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Artwork updated successfully"
-          },
-          "404": {
-            "description": "Artwork not found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },      
-      "delete": {
-        "tags": ["Art"],
-        "summary": "Delete an artwork",
-        "description": "Deletes an artwork from de collection. This can only be done by the logged in user.",
-        "operationId": "deleteArt",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "artId",
-            "in": "path",
-            "description": "The Id of artwork to delete",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Artwork deleted successfully "
-          },
-          "400": {
-            "description": "Invalid artId supplied"
-          },
-          "404": {
-            "description": "Artwork not found"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          "default": {
+            "description": ""
           }
         }
       }
@@ -263,6 +107,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "201": {
+            "description": "Created"
           },
           "400": {
             "description": "Bad Request"
@@ -415,6 +262,283 @@
         }
       }
     },
+    "/arts/": {
+      "get": {
+        "tags": [
+          "Art"
+        ],
+        "summary": "Get all artworks",
+        "description": "Get all artworks information from the database",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Art"
+        ],
+        "summary": "Create a new artwork",
+        "description": "Create a new artwork and insert it into the database",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "example": "any"
+                  },
+                  "title": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "publicationDate": {
+                    "example": "any"
+                  },
+                  "genre": {
+                    "example": "any"
+                  },
+                  "image": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/arts/user/{userId}": {
+      "get": {
+        "tags": [
+          "Art"
+        ],
+        "summary": "Get artworks by userId",
+        "description": "Get artworks information from the database by userId",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/arts/{artId}": {
+      "get": {
+        "tags": [
+          "Art"
+        ],
+        "summary": "Get an artwork by artId",
+        "description": "Get artwork information from the database by artId",
+        "parameters": [
+          {
+            "name": "artId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Art"
+        ],
+        "summary": "Update an artwork by artId",
+        "description": "Update artwork information by artId",
+        "parameters": [
+          {
+            "name": "artId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "example": "any"
+                  },
+                  "title": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "publicationDate": {
+                    "example": "any"
+                  },
+                  "genre": {
+                    "example": "any"
+                  },
+                  "image": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Art"
+        ],
+        "summary": "Delete an artwork by artId",
+        "description": "Delete artwork information by artId",
+        "parameters": [
+          {
+            "name": "artId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/books/": {
       "get": {
         "tags": [
@@ -422,6 +546,15 @@
         ],
         "summary": "Get all books",
         "description": "Get all books information from the database",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -437,6 +570,15 @@
         ],
         "summary": "Create a new book",
         "description": "Create a new book and insert it into the database",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -491,6 +633,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -516,6 +665,13 @@
             "name": "_id",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
             "schema": {
               "type": "string"
             }
@@ -579,6 +735,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -606,6 +769,13 @@
             "name": "author",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
             "schema": {
               "type": "string"
             }
