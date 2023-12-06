@@ -129,12 +129,6 @@ exports.updateArt = async (req, res) => {
     try {
     const artId = req.params.artId;
 
-    // Validate request body
-    //const errors = validationResult(req);
-    //if (!errors.isEmpty()) {
-    //  return res.status(400).json({ errors: errors.array() });
-    //}
-
     // Update artwork by artId
     const updatedArt = await Art.findOneAndUpdate({ artId: artId }, {
       userId: req.body.userId,

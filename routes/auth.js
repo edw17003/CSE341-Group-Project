@@ -2,7 +2,6 @@ const express = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
-const {loginCtrl, registerCtrl} = require('../controllers/auth');
 const passportConfig = require('../config/passport');
 
 // Config Passport
@@ -51,11 +50,5 @@ router.get('/logout', (req, res, next) => {
   });
 });
 
-// //Login
-// router.post('/login', loginCtrl)
-
-
-// //Register an user
-// router.post('/register', registerCtrl)
 
 module.exports = router;
