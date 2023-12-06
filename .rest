@@ -108,7 +108,7 @@ curl -X POST 'http://localhost:8080/arts/' \
 curl -X GET 'http://localhost:8080/arts/' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAxODY1MzIwLCJleHAiOjE3MDE4NzI1MjB9.SFl06tKiAzMO4q6SyqVK4SGGwkwjFU46fRoqDwOe03U'
+  -H 'Authorization: Bearer '
 
 
 ### Get art by ID
