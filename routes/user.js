@@ -9,3 +9,6 @@ routes.put('/:_id', checkRoleAuth([3]), users.editById);
 routes.delete('/:_id', checkRoleAuth([3]), users.deleteById);
 
 module.exports = routes;
+
+
+// level 3 for put and delete
