@@ -37,7 +37,6 @@ router.get(
 );
 
 
-
 // Logout user
 router.get('/logout', (req, res, next) => {
   res.clearCookie('jwt');

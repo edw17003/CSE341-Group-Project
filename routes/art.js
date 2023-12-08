@@ -7,7 +7,7 @@ const  checkRoleAuth = require('../middleware/jwtAuth');
 // Define routes
 
 // Get all arts
-router.get('/', checkRoleAuth([1]), artController.getAllArts);
+router.get('/', checkRoleAuth([1, 2]), artController.getAllArts);
 
 // Create a new art
 router.post(
@@ -20,7 +20,7 @@ router.post(
     body('publicationDate').notEmpty().withMessage('publicationDate is required'),
     body('genre').notEmpty().withMessage('genre is required'),
     body('image').notEmpty().withMessage('image is required')
-  ],
+  ], checkRoleAuth([1]),
   artController.createArt
 );
 
@@ -30,7 +30,7 @@ router.get(
   [
     // Validation for required userId parameter
     param('userId').notEmpty().withMessage('userId parameter is required')
-  ], checkRoleAuth([1]),
+  ], checkRoleAuth([1,2]),
   artController.getArtByUserId
 );
 
@@ -40,7 +40,7 @@ router.get(
   [
     // Validation for required artId parameter
     param('artId').notEmpty().withMessage('artId parameter is required')
-  ], checkRoleAuth([1]),
+  ], checkRoleAuth([1,2]),
   artController.getArt
 );
 
@@ -66,7 +66,7 @@ router.delete(
   [
     // Validation for required artId parameter
     param('artId').notEmpty().withMessage('artId parameter is required')
-  ], checkRoleAuth([2]),
+  ], checkRoleAuth([1]),
   artController.deleteArt
 );
 

@@ -21,6 +21,6 @@ Ensure that Node.js and npm are installed on your machine.
 - npm test
 
 ## jwt token
--npm i jsonwebtoken -s 
-- npm install bcryptjs  
+- npm i jsonwebtoken -s 
+- npm install cookie-parser  
 
