@@ -1,23 +1,16 @@
-const { validationResult } = require('express-validator');
-const Art = require('../models/Art');
+const db = require('../models');
+const Art = db.Art;
 
 const apiKey =
   'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N';
 
 // Get all artworks
-exports.getAllArts = async (req, res) => {
+exports.getAllArts = (req, res) => {
   // #swagger.tags = ['Art']
   // #swagger.summary = 'Get all artworks'
   // #swagger.description = 'Get all artworks information from the database'
-
-  try {
-    // Check if the API key is valid
-    if (req.header('apiKey') !== apiKey) {
-      return res.status(401).send('Invalid apiKey, please read the documentation.');
-    }
-
-    // Retrieve all artworks with selected fields
-    const data = await Art.find(
+  if (req.header('apiKey') === apiKey) {
+    Art.find(
       {},
       {
         _id: 1,
@@ -29,15 +22,17 @@ exports.getAllArts = async (req, res) => {
         genre: 1,
         image: 1
       }
-    );
-
-    res.status(200).send(data);
-  } catch (error) {
-    // Handle unexpected errors
-    console.error(error);
-    res.status(500).send({
-      message: 'Internal server error.'
+    )
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || 'An error occurred while retrieving book.'
+      });
     });
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
   }
 };
 
@@ -77,48 +72,25 @@ exports.createArt = async (req, res) => {
   // #swagger.tags = ['Art']
   // #swagger.summary = 'Create a new artwork'
   // #swagger.description = 'Create a new artwork and insert it into the database'
-
-  try {
-    // Check if the API key is valid
-    if (req.header('apiKey') !== apiKey) {
-      return res.status(401).send('Invalid apiKey, please read the documentation.');
-    }
-
-    // Validate request body
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    // Parse the userId as an integer (or handle it appropriately based on your requirements)
-    const userId = parseInt(req.body.userId);
-
-    // Check if userId is a valid number
-    if (isNaN(userId)) {
-      return res.status(400).send('Invalid userId. Must be a number.');
-    }
-
-    // Create a new artwork instance
-    const art = new Art({
-      userId: userId,
-      title: req.body.title,
-      description: req.body.description,
-      publicationDate: req.body.publicationDate,
-      genre: req.body.genre,
-      image: req.body.image
-    });
-
+  if (req.header('apiKey') === apiKey) {
+    try {
+      const art = new Art({
+        userId: req.body.userId,
+        title: req.body.title,
+        description: req.body.description,
+        publicationDate: req.body.publicationDate,
+        genre: req.body.genre,
+        image: req.body.image
+      });
     // Save the artwork to the database
     const data = await art.save();
-
-    res.status(201).send(data);
-  } catch (error) {
-    // Handle unexpected errors
-    console.error(error);
-    res.status(500).send({
-      message: 'Internal server error.'
-    });
+    res.status(200).send(data);
+  } catch(error) {
+    res.status(500).send({ message: error.message })
   }
+} else {
+  res.status(401).send('Invalid apiKey, please read the documentation.');
+}
 };
 
 // Get artworks by userId
@@ -153,20 +125,9 @@ exports.updateArt = async (req, res) => {
   // #swagger.tags = ['Art']
   // #swagger.summary = 'Update an artwork by artId'
   // #swagger.description = 'Update artwork information by artId'
-
-  try {
-    // Check if the API key is valid
-    if (req.header('apiKey') !== apiKey) {
-      return res.status(401).send('Invalid apiKey, please read the documentation.');
-    }
-
+  if (req.header('apiKey') === apiKey) {
+    try {
     const artId = req.params.artId;
-
-    // Validate request body
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
 
     // Update artwork by artId
     const updatedArt = await Art.findOneAndUpdate({ artId: artId }, {
@@ -196,6 +157,9 @@ exports.updateArt = async (req, res) => {
       message: 'Internal server error.'
     });
   }
+} else {
+  res.send('Invalid apiKey, please read the documentation.');
+}
 };
 
 

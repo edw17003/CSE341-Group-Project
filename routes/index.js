@@ -1,16 +1,18 @@
 const routes = require('express').Router();
+const cookieParser = require('cookie-parser'); // Importa el middleware de manejo de cookies
 const user = require('./user');
 const book = require('./book');
 const roleRoute = require('./roleRoute');
-const art = require('./art')
+const art = require('./art');
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
 const axios = require('axios');
 
 routes.use('/', require('./swagger'));
+routes.use(cookieParser());
 routes.use('/users', user);
+routes.use('/arts', art);
 routes.use('/books', book);
 routes.use('/roles', roleRoute);
-routes.use('/arts', art)
 routes.get('/', ensureGuest, (req, res) => {
   res.render('login', {
     layout: 'login'
@@ -40,3 +42,4 @@ routes.get('/dashboard', ensureAuth, async (req, res) => {
 });
 
 module.exports = routes;
+

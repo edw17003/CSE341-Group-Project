@@ -2,11 +2,12 @@ const express = require('express');
 const { body, param } = require('express-validator');
 const router = express.Router();
 const artController = require('../controllers/art');
+const  checkRoleAuth = require('../middleware/jwtAuth');
 
 // Define routes
 
 // Get all arts
-router.get('/', artController.getAllArts);
+router.get('/', checkRoleAuth([1]), artController.getAllArts);
 
 // Create a new art
 router.post(
@@ -19,7 +20,7 @@ router.post(
     body('publicationDate').notEmpty().withMessage('publicationDate is required'),
     body('genre').notEmpty().withMessage('genre is required'),
     body('image').notEmpty().withMessage('image is required')
-  ],
+  ], checkRoleAuth([3]),
   artController.createArt
 );
 
@@ -29,17 +30,17 @@ router.get(
   [
     // Validation for required userId parameter
     param('userId').notEmpty().withMessage('userId parameter is required')
-  ],
+  ], checkRoleAuth([1]),
   artController.getArtByUserId
 );
 
 // Get art by artId
-router.get(
+router.get( 
   '/:artId',
   [
     // Validation for required artId parameter
     param('artId').notEmpty().withMessage('artId parameter is required')
-  ],
+  ], checkRoleAuth([1]),
   artController.getArt
 );
 
@@ -55,7 +56,7 @@ router.put(
     body('publicationDate').notEmpty().withMessage('publicationDate is required'),
     body('genre').notEmpty().withMessage('genre is required'),
     body('image').notEmpty().withMessage('image is required')
-  ],
+  ], checkRoleAuth([3]),
   artController.updateArt
 );
 
@@ -65,7 +66,7 @@ router.delete(
   [
     // Validation for required artId parameter
     param('artId').notEmpty().withMessage('artId parameter is required')
-  ],
+  ], checkRoleAuth([3]),
   artController.deleteArt
 );
 
