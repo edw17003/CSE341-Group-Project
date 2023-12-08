@@ -16,10 +16,10 @@
 
 // const createJwtToken = (roleId) => {
 //   return jwt.sign(
-//     { 
+//     {
 //       googleId: 'asdf1234',
 //       roleId: roleId
-//     }, 
+//     },
 //     process.env.JWT_SECRET
 //   );
 // };

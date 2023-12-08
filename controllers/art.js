@@ -23,14 +23,14 @@ exports.getAllArts = (req, res) => {
         image: 1
       }
     )
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || 'An error occurred while retrieving book.'
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || 'An error occurred while retrieving book.'
+        });
       });
-    });
   } else {
     res.send('Invalid apiKey, please read the documentation.');
   }
@@ -82,15 +82,15 @@ exports.createArt = async (req, res) => {
         genre: req.body.genre,
         image: req.body.image
       });
-    // Save the artwork to the database
-    const data = await art.save();
-    res.status(200).send(data);
-  } catch(error) {
-    res.status(500).send({ message: error.message })
+      // Save the artwork to the database
+      const data = await art.save();
+      res.status(200).send(data);
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  } else {
+    res.status(401).send('Invalid apiKey, please read the documentation.');
   }
-} else {
-  res.status(401).send('Invalid apiKey, please read the documentation.');
-}
 };
 
 // Get artworks by userId
@@ -127,41 +127,44 @@ exports.updateArt = async (req, res) => {
   // #swagger.description = 'Update artwork information by artId'
   if (req.header('apiKey') === apiKey) {
     try {
-    const artId = req.params.artId;
+      const artId = req.params.artId;
 
-    // Update artwork by artId
-    const updatedArt = await Art.findOneAndUpdate({ artId: artId }, {
-      userId: req.body.userId,
-      title: req.body.title,
-      description: req.body.description,
-      publicationDate: req.body.publicationDate,
-      genre: req.body.genre,
-      image: req.body.image
-    }, { new: true });
+      // Update artwork by artId
+      const updatedArt = await Art.findOneAndUpdate(
+        { artId: artId },
+        {
+          userId: req.body.userId,
+          title: req.body.title,
+          description: req.body.description,
+          publicationDate: req.body.publicationDate,
+          genre: req.body.genre,
+          image: req.body.image
+        },
+        { new: true }
+      );
 
-    if (!updatedArt) {
-      return res.status(404).send({ message: 'No artwork found with artId: ' + artId });
+      if (!updatedArt) {
+        return res.status(404).send({ message: 'No artwork found with artId: ' + artId });
+      }
+
+      res.status(200).send(updatedArt);
+    } catch (error) {
+      // Handle unexpected errors
+      console.error(error);
+
+      // Check if the error is a duplicate key error
+      if (error.name === 'MongoServerError' && error.code === 11000) {
+        return res.status(409).send({ message: 'Data already exists.' });
+      }
+
+      res.status(500).send({
+        message: 'Internal server error.'
+      });
     }
-
-    res.status(200).send(updatedArt);
-  } catch (error) {
-    // Handle unexpected errors
-    console.error(error);
-
-    // Check if the error is a duplicate key error
-    if (error.name === 'MongoServerError' && error.code === 11000) {
-      return res.status(409).send({ message: 'Data already exists.' });
-    }
-
-    res.status(500).send({
-      message: 'Internal server error.'
-    });
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
   }
-} else {
-  res.send('Invalid apiKey, please read the documentation.');
-}
 };
-
 
 // Delete artwork by artId
 exports.deleteArt = async (req, res) => {

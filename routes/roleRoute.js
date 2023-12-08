@@ -1,6 +1,7 @@
 const routes = require('express').Router();
 const roleController = require('../controllers/roleController');
 const { body, param, validationResult } = require('express-validator');
+const checkRoleAuth = require('../middleware/jwtAuth');
 
 // Validation middleware for role ID
 const validateRoleId = param('roleId').isNumeric().withMessage('Invalid role ID format');
@@ -31,12 +32,31 @@ routes.post('/', validateRoleData, handleValidationErrors, async (req, res) => {
 routes.get('/', roleController.getAllRoles);
 
 // GET role by ID
-routes.get('/:roleId', validateRoleId, handleValidationErrors, roleController.getSingleRole);
+routes.get(
+  '/:roleId',
+  validateRoleId,
+  checkRoleAuth([1]),
+  handleValidationErrors,
+  roleController.getSingleRole
+);
 
 // PUT update role by ID
-routes.put('/:roleId', validateRoleId, validateRoleData, handleValidationErrors, roleController.updateRole);
+routes.put(
+  '/:roleId',
+  validateRoleId,
+  checkRoleAuth([3]),
+  validateRoleData,
+  handleValidationErrors,
+  roleController.updateRole
+);
 
 // DELETE role by ID
-routes.delete('/:roleId', validateRoleId, handleValidationErrors, roleController.deleteRole);
+routes.delete(
+  '/:roleId',
+  validateRoleId,
+  checkRoleAuth([3]),
+  handleValidationErrors,
+  roleController.deleteRole
+);
 
 module.exports = routes;

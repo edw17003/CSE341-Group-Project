@@ -61,6 +61,7 @@ curl -X POST \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
   -d '{
     "roleId": 6,
     "roleName": "Dagwan"
@@ -70,7 +71,8 @@ curl -X POST \
 ### get all roles
 curl -X GET \
   'http://localhost:8080/roles' \
-  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
 
 
 ### get role by id
@@ -85,6 +87,7 @@ curl -X PUT \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE' \
   -d '{
     "roleId": 2,
     "roleName": "Danladi"
@@ -94,7 +97,8 @@ curl -X PUT \
 ### delete role by id
 curl -X DELETE \
   'http://localhost:8080/roles/2' \
-  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
 
 
 ## ___________ARTS:
@@ -213,18 +217,210 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwO
 
 ## ___________PRODUCTION____________
 ### Get all users
-GET https://cse341-groupproject.onrender.com/users/
-accept: application/json
-apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+curl -X GET 'https://cse341-groupproject.onrender.com/users/' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
-### Get by ID 
-GET https://cse341-groupproject.onrender.com/users/108697017691255307413 
-accept: application/json 
-apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+### Get user by ID
+curl -X GET 'https://cse341-groupproject.onrender.com/users/1' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
+
+### Create user 
+curl -X POST 'https://cse341-groupproject.onrender.com/users/' \ 
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0' \
+  -d '{
+    "googleId": "1",
+    "displayName": "displayName",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "image": "image",
+    "roleId": 1,
+    "biography": "biography"
+  }'
+
+### Edit user
+curl -X PUT 'https://cse341-groupproject.onrender.com/users/1' \ 
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0' \
+  -d '{
+    "displayName": "displayName1",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "image": "image",
+    "roleId": 1,
+    "biography": "biography"
+  }'
+
+### Delete user
+curl -X DELETE 'https://cse341-groupproject.onrender.com/users/1' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
+
+
+## ___________ROLES:
+### create a new role
+curl -X POST \
+  'https://cse341-groupproject.onrender.com/roles' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+  -d '{
+    "roleId": 6,
+    "roleName": "Dagwan"
+  }'
+
+
+### get all roles
+curl -X GET \
+  'https://cse341-groupproject.onrender.com/roles' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+
+
+### get role by id
+curl -X GET \
+  'https://cse341-groupproject.onrender.com/roles/2' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+
+
+### update role
+curl -X PUT \
+  'https://cse341-groupproject.onrender.com/roles/6' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE' \
+  -d '{
+    "roleId": 2,
+    "roleName": "Danladi"
+  }'
+
+
+### delete role by id
+curl -X DELETE \
+  'https://cse341-groupproject.onrender.com/roles/2' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+
+
+## ___________ARTS:
+### Create art
+curl -X POST 'https://cse341-groupproject.onrender.com/arts/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -d '{
+    "userId": "2",
+    "title": "Impressionism  ",
+    "description": "A creative approach while maintaining good quality.",
+    "publicationDate": "2023-11-23",
+    "genre": "Landcaping",
+    "image": "someimage.jpeg"
+  }' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
 
 ### Get all arts
-GET 'https://cse341-groupproject.onrender.com/arts/
+curl -X GET 'https://cse341-groupproject.onrender.com/arts/' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+
+
+### Get art by ID
+curl -X GET 'https://cse341-groupproject.onrender.com/arts/655e608bdfe7464d5bb5f442' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+
+
+### Get art by user ID
+curl -X GET 'https://cse341-groupproject.onrender.com/arts/2' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+
+### Update art
+curl -X PUT 'https://cse341-groupproject.onrender.com/arts/655f5fb8edefaa83bb6eb795' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -d '{
+    "userId": "1",
+    "title": "Cubism  ",
+    "description": "Exhibits high-quality abstraction, adhering to compositional principles",
+    "publicationDate": "2023-11-22",
+    "genre": "Potriat",
+    "image": "someimage.jpeg"
+  }' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+
+### Delete art
+curl -X DELETE 'https://cse341-groupproject.onrender.com/arts/656052cc0ab92197aadde8b1' \
+  -H 'accept: application/json' \
+  -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+
+
+# ___________BOOKS
+
+###
+GET https://cse341-groupproject.onrender.com/books
 accept: application/json
 apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDQyMzQ0LCJleHAiOjE3MDIwNDk1NDR9.ZnkZkPGWpdX8s0xqPJLfp3xWVrKJmnAw_4KI2_E0ww8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0
+
+###
+GET https://cse341-groupproject.onrender.com/books/65728fc5503bcc8b9337a4e9
+accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0
+
+
+###
+POST https://cse341-groupproject.onrender.com/books HTTP/1.1
+content-type: application/json
+accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0
+
+{   
+   "title": "The Starry night",
+    "author": "Vincent Van Gogh",
+    "genre": "post Impressionist",
+    "publicationDate": "1989",
+    "description": "The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh",
+    "associatedArtwork": "self-portrait"
+}
+
+###
+PUT https://cse341-groupproject.onrender.com/books/6572c4086c0dbdf717bc6778 HTTP/1.1
+content-type: application/json
+accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0
+
+{   
+   "title": "The Starry night",
+    "author": "Vincent Van Gogh",
+    "genre": "post Impressionist",
+    "publicationDate": "1989",
+    "description": "The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh",
+    "associatedArtwork": "Bedroom in Arles"
+}
+
+###
+DELETE https://cse341-groupproject.onrender.com/books/6572c4086c0dbdf717bc6778 HTTP/1.1
+accept: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0
 

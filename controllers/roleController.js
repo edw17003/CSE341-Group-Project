@@ -25,7 +25,7 @@ const createRole = async (req, res) => {
   // #swagger.tags = ['Roles']
   // #swagger.summary = 'Create a new role'
   // #swagger.description = 'Create a new role and insert it into the database'
-  
+
   if (req.header('apiKey') === apiKey) {
     try {
       // Extract role data from the request body
@@ -58,7 +58,7 @@ const getAllRoles = async (req, res) => {
   // #swagger.tags = ['Roles']
   // #swagger.summary = 'Get all roles'
   // #swagger.description = 'Get all roles information from the database'
-  
+
   if (req.header('apiKey') === apiKey) {
     try {
       const roles = await Role.find();
@@ -77,7 +77,7 @@ const getSingleRole = async (req, res) => {
   // #swagger.tags = ['Roles']
   // #swagger.summary = 'Get a role by ID'
   // #swagger.description = 'Get a role information from the database by ID'
-  
+
   if (req.header('apiKey') === apiKey) {
     try {
       const roleId = req.params.roleId;
@@ -102,7 +102,7 @@ const updateRole = async (req, res) => {
   // #swagger.tags = ['Roles']
   // #swagger.summary = 'Update a role by ID'
   // #swagger.description = 'Update role information by ID'
-  
+
   if (req.header('apiKey') === apiKey) {
     try {
       const roleId = req.params.roleId;
@@ -133,7 +133,7 @@ const deleteRole = async (req, res) => {
   // #swagger.tags = ['Roles']
   // #swagger.summary = 'Delete a role by ID'
   // #swagger.description = 'Delete role information by ID'
-  
+
   if (req.header('apiKey') === apiKey) {
     try {
       const roleId = req.params.roleId;

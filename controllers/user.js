@@ -48,7 +48,7 @@ exports.findById = (req, res) => {
       })
       .catch((err) => {
         res.status(500).send({
-          message: 'Error retrieving user with id ' + googleId,
+          message: 'Error retrieving user with id ' + googleId
         });
       });
   } else {
@@ -61,8 +61,8 @@ exports.create = async (req, res) => {
   // #swagger.summary = 'Create a new user'
   // #swagger.description = 'Create a new user and insert it into the database'
   if (!req.body.firstName) {
-    console.log(req.body)
-    res.status(400).send({ message: 'Content cannot be empty' })
+    console.log(req.body);
+    res.status(400).send({ message: 'Content cannot be empty' });
     return;
   }
 
@@ -77,12 +77,11 @@ exports.create = async (req, res) => {
         image: req.body.image,
         roleId: req.body.roleId,
         biography: req.body.biography
-      }
-    )
+      });
       const data = await user.save();
-      res.status(201).send(data)
-    } catch(e) {
-      res.status(500).send({ message: e.message })
+      res.status(201).send(data);
+    } catch (e) {
+      res.status(500).send({ message: e.message });
     }
   } else {
     res.send('Invalid apiKey, please read the documentation.');
@@ -109,7 +108,6 @@ exports.editById = async (req, res) => {
   }
 };
 
-
 exports.deleteById = (req, res) => {
   // #swagger.tags = ['Users']
   // #swagger.summary = 'Delete a user'
@@ -117,19 +115,19 @@ exports.deleteById = (req, res) => {
   const googleId = req.params._id;
   if (req.header('apiKey') === apiKey) {
     User.findOneAndDelete({ googleId: googleId })
-    .then((user) => {
-      if (!user) {
-        res.status(404).send({ message: 'No user found with id ' + googleId });
-      } else {
-        res.send({ message: 'User deleted successfully' });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: 'Error deleting user with id ' + googleId
+      .then((user) => {
+        if (!user) {
+          res.status(404).send({ message: 'No user found with id ' + googleId });
+        } else {
+          res.send({ message: 'User deleted successfully' });
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: 'Error deleting user with id ' + googleId
+        });
       });
-    });
   } else {
     res.send('Invalid apiKey, please read the documentation.');
-  } 
+  }
 };

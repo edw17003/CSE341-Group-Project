@@ -5,12 +5,12 @@ const Book = require('../models/Books');
 
 // Mock data for testing
 const mockBook = {
-  title: "Guernica",
-  author: "Pablo Picasso",
-  genre: "History Painting",
-  publicationDate: "1937",
-  description: "The most moving and powerful anti-war painting in history",
-  associatedArtwork: "Dove of Peace"
+  title: 'Guernica',
+  author: 'Pablo Picasso',
+  genre: 'History Painting',
+  publicationDate: '1937',
+  description: 'The most moving and powerful anti-war painting in history',
+  associatedArtwork: 'Dove of Peace'
 };
 
 // Test suite for the 'createArt' endpoint
@@ -29,15 +29,21 @@ describe('Book Controller - createBook', () => {
     // Make a POST request to create a new artwork
     const response = await request(app)
       .post('/books')
-      .set('apiKey', 'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N')
-      .set('Authorization','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE')
+      .set(
+        'apiKey',
+        'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+      )
+      .set(
+        'Authorization',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+      )
       .send({
-        title: "Guernica",
-        author: "Pablo Picasso",
-        genre: "History Painting",
-        publicationDate: "1937",
-        description: "The most moving and powerful anti-war painting in history",
-        associatedArtwork: "Dove of Peace"
+        title: 'Guernica',
+        author: 'Pablo Picasso',
+        genre: 'History Painting',
+        publicationDate: '1937',
+        description: 'The most moving and powerful anti-war painting in history',
+        associatedArtwork: 'Dove of Peace'
       });
 
     // Verify the response status code is 200 (Created)
@@ -50,11 +56,11 @@ describe('Book Controller - createBook', () => {
       genre: mockBook.genre,
       publicationDate: mockBook.publicationDate,
       description: mockBook.description,
-      associatedArtwork: mockBook.associatedArtwork,
+      associatedArtwork: mockBook.associatedArtwork
     });
 
     // Additional checks if needed
-    expect(response.body._id).toBeDefined(); 
+    expect(response.body._id).toBeDefined();
     // Add other property checks as needed
   }, 10000); // Increase the test timeout to 10 seconds
 });

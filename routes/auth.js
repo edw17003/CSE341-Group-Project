@@ -17,12 +17,12 @@ router.get(
   async (req, res) => {
     try {
       const token = jwt.sign(
-        { 
-          googleId: req.user.googleId, 
-          roleId: req.user.roleId 
+        {
+          googleId: req.user.googleId,
+          roleId: req.user.roleId
         },
         process.env.JWT_SECRET,
-        {expiresIn: '2h'}
+        { expiresIn: '2h' }
       );
 
       res.cookie('jwt', token);
@@ -36,7 +36,6 @@ router.get(
   }
 );
 
-
 // Logout user
 router.get('/logout', (req, res, next) => {
   res.clearCookie('jwt');
@@ -48,6 +47,5 @@ router.get('/logout', (req, res, next) => {
     res.redirect('/');
   });
 });
-
 
 module.exports = router;

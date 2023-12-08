@@ -1,7 +1,7 @@
 // Import necessary modules
 const request = require('supertest');
 const app = require('../index');
-const User = require('../models/User'); 
+const User = require('../models/User');
 
 // Mock data for testing
 const mockUser = {
@@ -11,7 +11,7 @@ const mockUser = {
   lastName: 'lastName',
   image: 'image',
   roleId: 1,
-  biography: 'biography',
+  biography: 'biography'
 };
 
 // Test suite for the 'createUser' endpoint
@@ -30,8 +30,14 @@ describe('User Controller - createUser', () => {
     // Make a POST request to create a new user
     const response = await request(app)
       .post('/users')
-      .set('apiKey', 'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N')
-      .set('Authorization','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE')
+      .set(
+        'apiKey',
+        'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+      )
+      .set(
+        'Authorization',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+      )
       .send({
         googleId: '1',
         displayName: 'displayName',
@@ -39,7 +45,7 @@ describe('User Controller - createUser', () => {
         lastName: 'lastName',
         image: 'image',
         roleId: 1,
-        biography: 'biography',
+        biography: 'biography'
       });
 
     // Verify the response status code is 201 (Created)
@@ -53,11 +59,11 @@ describe('User Controller - createUser', () => {
       lastName: mockUser.lastName,
       image: mockUser.image,
       roleId: mockUser.roleId,
-      biography: mockUser.biography,
+      biography: mockUser.biography
     });
 
     // Additional checks if needed
-    expect(response.body._id).toBeDefined(); 
+    expect(response.body._id).toBeDefined();
     // Add other property checks as needed
   }, 10000); // Increase the test timeout to 10 seconds
 });

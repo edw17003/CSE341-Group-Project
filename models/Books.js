@@ -28,8 +28,6 @@ const BookSchema = new mongoose.Schema({
 
 module.exports = mongoose.model('Book', BookSchema, 'books');
 
-
-
-// Books: This collection will store information about books, 
+// Books: This collection will store information about books,
 // including details such as title, author, genre, publication date,
 // description, and associated artwork.

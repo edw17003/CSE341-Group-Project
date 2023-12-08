@@ -1,10 +1,10 @@
 const request = require('supertest');
 const app = require('../index');
-const User = require('../models/User'); 
+const User = require('../models/User');
 
 // Mock the User model
 jest.mock('../models/User', () => ({
-  findOneAndUpdate: jest.fn(),  // Mock the findOneAndUpdate method
+  findOneAndUpdate: jest.fn() // Mock the findOneAndUpdate method
 }));
 
 describe('User Controller - updateUser', () => {
@@ -17,12 +17,12 @@ describe('User Controller - updateUser', () => {
     lastName: 'lastName',
     image: 'image',
     roleId: 1,
-    biography: 'biography',
+    biography: 'biography'
   };
 
   // Reset the mock implementation before each test
   beforeEach(() => {
-    jest.clearAllMocks();  // Clear all mock implementations, including findOneAndUpdate
+    jest.clearAllMocks(); // Clear all mock implementations, including findOneAndUpdate
   });
 
   it('should update a user by userId successfully', async () => {
@@ -32,15 +32,21 @@ describe('User Controller - updateUser', () => {
     const userId = '1';
     const response = await request(app)
       .put(`/users/${userId}`)
-      .set('apiKey', 'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N')
-      .set('Authorization','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE')
+      .set(
+        'apiKey',
+        'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N'
+      )
+      .set(
+        'Authorization',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+      )
       .send({
         displayName: 'displayName1',
         firstName: 'firstName',
         lastName: 'lastName',
         image: 'image',
         roleId: 1,
-        biography: 'biography',
+        biography: 'biography'
       });
 
     expect(response.statusCode).toBe(200);

@@ -4,7 +4,6 @@ const Book = db.Book;
 const apiKey =
   'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N';
 
-
 exports.findAll = (req, res) => {
   // #swagger.tags = ['Books']
   // #swagger.summary = 'Get all books'
@@ -40,7 +39,7 @@ exports.findById = (req, res) => {
   // #swagger.summary = 'Get a book by Id'
   // #swagger.description = 'Get a book information from the database'
   let bookId = req.params._id;
-  if (req.header('apiKey') === apiKey) { 
+  if (req.header('apiKey') === apiKey) {
     Book.findById({ _id: bookId })
       .then((data) => {
         if (!data) res.status(404).send({ message: 'No book found with id ' + bookId });
@@ -48,14 +47,13 @@ exports.findById = (req, res) => {
       })
       .catch((err) => {
         res.status(500).send({
-          message: 'Error retrieving book with bookId ' + bookId,
+          message: 'Error retrieving book with bookId ' + bookId
         });
       });
   } else {
     res.send('Invalid apiKey, please read the documentation.');
   }
 };
-
 
 exports.getByAuthor = (req, res) => {
   // #swagger.tags = ['Books']
@@ -70,7 +68,7 @@ exports.getByAuthor = (req, res) => {
       })
       .catch((err) => {
         res.status(500).send({
-          message: 'Error retrieving book with author ' + bookAuthor,
+          message: 'Error retrieving book with author ' + bookAuthor
         });
       });
   } else {
@@ -82,7 +80,6 @@ exports.create = async (req, res) => {
   // #swagger.tags = ['Books']
   // #swagger.summary = 'Create a new book'
   // #swagger.description = 'Create a new book and insert it into the database'
- 
 
   if (req.header('apiKey') === apiKey) {
     try {
@@ -93,12 +90,11 @@ exports.create = async (req, res) => {
         publicationDate: req.body.publicationDate,
         description: req.body.description,
         associatedArtwork: req.body.associatedArtwork
-      }
-    )
+      });
       const data = await book.save();
-      res.send(data)
-    } catch(e) {
-      res.status(500).send({ message: e.message })
+      res.send(data);
+    } catch (e) {
+      res.status(500).send({ message: e.message });
     }
   } else {
     res.send('Invalid apiKey, please read the documentation.');
@@ -112,12 +108,18 @@ exports.editById = async (req, res) => {
   const bookId = req.params._id;
   if (req.header('apiKey') === apiKey) {
     try {
-
       //validate inputs
-      if (!req.body.title || !req.body.author || !req.body.genre || !req.body.publicationDate|| !req.body.description|| !req.body.associatedArtwork) {
+      if (
+        !req.body.title ||
+        !req.body.author ||
+        !req.body.genre ||
+        !req.body.publicationDate ||
+        !req.body.description ||
+        !req.body.associatedArtwork
+      ) {
         res.status(400).send({ message: 'Content can not be empty!' });
         return;
-       }
+      }
 
       const updatedBook = await Book.findOneAndUpdate({ _id: bookId }, req.body, { new: true });
       if (!updatedBook) {
@@ -132,7 +134,6 @@ exports.editById = async (req, res) => {
   }
 };
 
-
 exports.deleteById = (req, res) => {
   // #swagger.tags = ['Books']
   // #swagger.summary = 'Delete a book'
@@ -140,19 +141,19 @@ exports.deleteById = (req, res) => {
   const bookId = req.params._id;
   if (req.header('apiKey') === apiKey) {
     Book.findOneAndDelete({ _id: bookId })
-    .then((book) => {
-      if (!book) {
-        res.status(404).send({ message: 'No book found with id ' + bookId });
-      } else {
-        res.send({ message: 'Book deleted successfully' });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: 'Error deleting book with id ' + bookId
+      .then((book) => {
+        if (!book) {
+          res.status(404).send({ message: 'No book found with id ' + bookId });
+        } else {
+          res.send({ message: 'Book deleted successfully' });
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: 'Error deleting book with id ' + bookId
+        });
       });
-    });
   } else {
     res.send('Invalid apiKey, please read the documentation.');
-  } 
+  }
 };
