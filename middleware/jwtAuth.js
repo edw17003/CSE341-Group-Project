@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const checkRoleAuth = (roles) => async (req, res, next) => {
-  const token = req.headers.authorization.split(' ').pop(); //obtain token from headers
+  const token = req.headers?.authorization?.split(' ').pop(); //obtain token from headers
   //const token = req.cookies.jwt; //obtain token from cookie
 
   if (!token) {
