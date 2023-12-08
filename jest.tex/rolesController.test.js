@@ -18,7 +18,13 @@ beforeEach(async () => {
 describe('Roles Controller', () => {
   describe('createRole', () => {
     it('should create a new role successfully', async () => {
-      const response = await request(app).post('/roles').set('apiKey', apiKey).send(mockRole);
+      const response = await request(app).post('/roles')
+      .set('apiKey', apiKey)
+      .set(
+        'Authorization',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+      )
+      .send(mockRole);
 
       expect(response.statusCode).toBe(201);
       expect(response.body).toEqual({
@@ -33,7 +39,13 @@ describe('Roles Controller', () => {
     });
 
     it('should handle validation errors', async () => {
-      const response = await request(app).post('/roles').set('apiKey', apiKey).send({}); // Invalid data
+      const response = await request(app).post('/roles')
+      .set('apiKey', apiKey)
+      .set(
+        'Authorization',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+      )
+      .send({}); // Invalid data
 
       expect(response.statusCode).toBe(400);
       expect(response.body.errors).toBeTruthy();
@@ -45,7 +57,12 @@ describe('Roles Controller', () => {
       // Add a role to the database for testing
       await Role.create(mockRole);
 
-      const response = await request(app).get('/roles').set('apiKey', apiKey);
+      const response = await request(app).get('/roles')
+      .set('apiKey', apiKey)
+      .set(
+        'Authorization',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+      );
 
       expect(response.statusCode).toBe(200);
       expect(response.body.length).toBe(1);
@@ -58,14 +75,26 @@ describe('Roles Controller', () => {
       // Add a role to the database for testing
       const createdRole = await Role.create(mockRole);
 
-      const response = await request(app).get(`/roles/${createdRole.roleId}`).set('apiKey', apiKey);
+      const response = await request(app)
+        .get(`/roles/${createdRole.roleId}`)
+        .set('apiKey', apiKey)
+        .set(
+          'Authorization',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
+        );
 
       expect(response.statusCode).toBe(200);
       expect(response.body.roleId).toBe(mockRole.roleId);
     });
 
     it('should handle role not found', async () => {
-      const response = await request(app).get('/roles/999').set('apiKey', apiKey);
+      const response = await request(app)
+      .get('/roles/999')
+      .set('apiKey', apiKey)
+      .set(
+        'Authorization',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
+      );
 
       expect(response.statusCode).toBe(404);
       expect(response.body.error).toBe('Role not found.');
@@ -82,6 +111,10 @@ describe('Roles Controller', () => {
       const response = await request(app)
         .put(`/roles/${createdRole.roleId}`)
         .set('apiKey', apiKey)
+        .set(
+          'Authorization',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+        )
         .send({ roleId: createdRole.roleId, roleName: updatedRoleName });
 
       expect(response.statusCode).toBe(200);
@@ -96,6 +129,10 @@ describe('Roles Controller', () => {
       const response = await request(app)
         .put('/roles/999')
         .set('apiKey', apiKey)
+        .set(
+          'Authorization',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+        )
         .send({ roleName: 'UpdatedRole' });
 
       expect(response.statusCode).toBe(400);
@@ -109,6 +146,10 @@ describe('Roles Controller', () => {
 
       const response = await request(app)
         .delete(`/roles/${createdRole.roleId}`)
+        .set(
+          'Authorization',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+        )
         .set('apiKey', apiKey);
 
       expect(response.statusCode).toBe(204);
@@ -119,7 +160,13 @@ describe('Roles Controller', () => {
     });
 
     it('should handle role not found during deletion', async () => {
-      const response = await request(app).delete('/roles/999').set('apiKey', apiKey);
+      const response = await request(app)
+      .delete('/roles/999')
+      .set('apiKey', apiKey)
+      .set(
+        'Authorization',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MywiaWF0IjoxNzAyMDExNzk0LCJleHAiOjE3MDMzMDc3OTR9.QWuZnV0Om2bznGxlzVROFNjfSaxvgf5VUIg6sWKhcUE'
+      );
 
       expect(response.statusCode).toBe(404);
       expect(response.body.error).toBe('Role not found.');
