@@ -1,13 +1,13 @@
 const jwt = require('jsonwebtoken');
 
 const checkRoleAuth = (roles) => async (req, res, next) => {
-        const token = req.headers.authorization.split(' ').pop() //obtain token from headers
-        //const token = req.cookies.jwt; //obtain token from cookie
+    const token = req.headers.authorization.split(' ').pop() //obtain token from headers
+    //const token = req.cookies.jwt; //obtain token from cookie
 
-        if (!token) {
-            return res.status(403).send({ error: 'Unauthorized: No token provided' });
-        }
-        try {
+    if (!token) {
+        return res.status(403).send({ error: 'Unauthorized: No token provided' });
+    }
+    try {
         //to verify the token
         const tokenData= jwt.verify(token, process.env.JWT_SECRET);
         //const tokenData = await verifyToken(token);
