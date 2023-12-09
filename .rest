@@ -115,27 +115,27 @@ curl -X POST 'http://localhost:8080/arts/' \
     "genre": "Landcaping",
     "image": "someimage.jpeg"
   }' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
 ### Get all arts
 curl -X GET 'http://localhost:8080/arts/' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
 
 ### Get art by ID
 curl -X GET 'http://localhost:8080/arts/655e608bdfe7464d5bb5f442' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
 
 ### Get art by user ID
 curl -X GET 'http://localhost:8080/arts/2' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
 ### Update art
 curl -X PUT 'http://localhost:8080/arts/655f5fb8edefaa83bb6eb795' \
@@ -150,13 +150,13 @@ curl -X PUT 'http://localhost:8080/arts/655f5fb8edefaa83bb6eb795' \
     "genre": "Potriat",
     "image": "someimage.jpeg"
   }' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
 ### Delete art
 curl -X DELETE 'http://localhost:8080/arts/656052cc0ab92197aadde8b1' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
 
 # ___________BOOKS
@@ -328,27 +328,27 @@ curl -X POST 'https://cse341-groupproject.onrender.com/arts/' \
     "genre": "Landcaping",
     "image": "someimage.jpeg"
   }' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
 ### Get all arts
 curl -X GET 'https://cse341-groupproject.onrender.com/arts/' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
 
 ### Get art by ID
 curl -X GET 'https://cse341-groupproject.onrender.com/arts/655e608bdfe7464d5bb5f442' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
 
 ### Get art by user ID
 curl -X GET 'https://cse341-groupproject.onrender.com/arts/2' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
 ### Update art
 curl -X PUT 'https://cse341-groupproject.onrender.com/arts/655f5fb8edefaa83bb6eb795' \
@@ -363,13 +363,13 @@ curl -X PUT 'https://cse341-groupproject.onrender.com/arts/655f5fb8edefaa83bb6eb
     "genre": "Potriat",
     "image": "someimage.jpeg"
   }' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
 ### Delete art
 curl -X DELETE 'https://cse341-groupproject.onrender.com/arts/656052cc0ab92197aadde8b1' \
   -H 'accept: application/json' \
   -H 'apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N' \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjExNTYyNDE0Mjg0MzY0MDY3NTQ5NSIsInJvbGVJZCI6MSwiaWF0IjoxNzAyMDM4NzQ4LCJleHAiOjE3MDIwNDU5NDh9.J1xal9j7YUUIfqZwl9ffqX8oK4Q9jIDUnwBapvQ8jGs'
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnb29nbGVJZCI6IjEwODY5NzAxNzY5MTI1NTMwNzQxMyIsInJvbGVJZCI6MSwiaWF0IjoxNzAxNTQ4MDQ0LCJleHAiOjE3MDMyNzYwNDR9.BZ4B4N__APhWVjjXlifjUus7uyvqCTy1xR4hDPThK-0'
 
 
 # ___________BOOKS

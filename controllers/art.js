@@ -84,12 +84,12 @@ exports.createArt = async (req, res) => {
       });
       // Save the artwork to the database
       const data = await art.save();
-      res.status(200).send(data);
+      res.send(data);
     } catch (error) {
       res.status(500).send({ message: error.message });
     }
   } else {
-    res.status(401).send('Invalid apiKey, please read the documentation.');
+    res.send('Invalid apiKey, please read the documentation.');
   }
 };
 
