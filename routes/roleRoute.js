@@ -24,12 +24,20 @@ const handleValidationErrors = (req, res, next) => {
 // Role Routes
 
 // POST new role
-routes.post('/', validateRoleData, handleValidationErrors, async (req, res) => {
+routes.post(
+  '/', 
+  validateRoleData, 
+  checkRoleAuth([3]),
+  handleValidationErrors, async (req, res) => {
   roleController.createRole(req, res);
 });
 
 // GET all roles
-routes.get('/', roleController.getAllRoles);
+routes.get(
+  '/', 
+  checkRoleAuth([1]),
+  roleController.getAllRoles
+);
 
 // GET role by ID
 routes.get(

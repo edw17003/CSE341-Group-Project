@@ -1,32 +1,44 @@
 const jwt = require('jsonwebtoken');
 
 const checkRoleAuth = (roles) => async (req, res, next) => {
-  const token = req.headers?.authorization?.split(' ').pop(); //obtain token from headers
-  //const token = req.cookies.jwt; //obtain token from cookie
+  // console.log(req.headers.authorization)
+  console.log(req.cookies)
+  let token;
+  if (req.headers.authorization) {
+    token = req.headers.authorization.split(' ').pop(); // obtain token from headers
+  } else if (req.cookies) {
+    token = req.cookies.jwt;
+  }
 
-  if (!token) {
+  if (token === undefined) {
     return res.status(403).send({ error: 'Unauthorized: No token provided' });
   }
+
   try {
-    //to verify the token
+    // to verify the token
     const tokenData = jwt.verify(token, process.env.JWT_SECRET);
-    //const tokenData = await verifyToken(token);
 
     if (!tokenData || !tokenData.roleId) {
-      return res.status(401).send({ error: 'Unauthorized: Invalid token' });
+      return res.status(401).send({ error: 'Unauthorized: Invalid token payload' });
     }
-    // To obtein the user rol of the token
+
+    // To obtain the user role of the token
     const userRoleId = tokenData.roleId;
     const requireRole = roles;
 
     // checks if the user's role has permission to access the endpoint
-    if (!requireRole.includes(userRoleId)) {
+    if (requireRole.some(role => role <= userRoleId)) {
+      // Allow access if any required role is less than or equal to the user's role
+      next();
+    } else {
       return res.status(403).send({ error: 'Forbidden: Insufficient permissions' });
     }
-    // If the user has the appropriate role, allow access to the route
-    next();
   } catch (error) {
-    console.error(error);
+    console.error('JWT validation error:', error.message); // Log a user-friendly error message
+    if (error.name === 'JsonWebTokenError') {
+      return res.status(401).send({ error: 'Unauthorized: Invalid token format' });
+    }
+
     res.status(500).send({ error: 'Internal server error' });
   }
 };
